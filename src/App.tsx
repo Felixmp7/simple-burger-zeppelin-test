@@ -1,26 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Banner from 'components/Banner';
+import Products from 'components/Products';
+import useProducts from 'hooks/useProduct';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = (): JSX.Element => {
+    const { combos, burgers, others } = useProducts();
+    return (
+        <>
+            <Banner />
+            <Products
+                backgroundColor="#FFF9EE"
+                descriptionTitle="Complete for you"
+                productTitle="Combo"
+                products={combos}
+            />
+            <Products
+                backgroundColor="#ffffff"
+                descriptionTitle="Delicious"
+                productTitle="Burgers"
+                products={burgers}
+            />
+            <Products
+                backgroundColor="#ffffff"
+                descriptionTitle="More?"
+                productTitle="Other"
+                products={others}
+            />
+        </>
+    );
+};
 
 export default App;
