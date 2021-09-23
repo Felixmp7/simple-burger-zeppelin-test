@@ -4,7 +4,7 @@ const Container = styled.span`
     font-size: 12px;
 `;
 
-type Props = { price: number };
+type Props = { price: string | number };
 
 const Price = ({ price }: Props): JSX.Element => (
     <Container>
