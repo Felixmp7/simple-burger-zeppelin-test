@@ -2,7 +2,7 @@ import { FC } from 'react';
 import Price from 'components/Price';
 import styled from 'styled-components';
 import { IProduct } from 'types';
-import AddToCartButton from 'components/AddToCartButton';
+import HandleCartButton from 'components/HandleCartButton';
 
 interface IStyle { image?: string; }
 
@@ -69,7 +69,7 @@ const Product: FC<IProduct> = ({
                 <div className="bubble">
                     <Price price={price} />
                 </div>
-                <AddToCartButton />
+                <HandleCartButton price={price} />
             </div>
         </div>
     </Container>
