@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import styled from 'styled-components';
 import App from 'App';
+import { RecoilRoot } from 'recoil';
 import reportWebVitals from './reportWebVitals';
 
 const Container = styled.div`
@@ -12,9 +13,11 @@ const Container = styled.div`
 
 ReactDOM.render(
     <React.StrictMode>
-        <Container>
-            <App />
-        </Container>
+        <RecoilRoot>
+            <Container>
+                <App />
+            </Container>
+        </RecoilRoot>
     </React.StrictMode>,
     document.getElementById('root'),
 );
