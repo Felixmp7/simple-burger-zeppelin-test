@@ -1,5 +1,7 @@
 import Banner from 'components/Banner';
+import Footer from 'components/Footer';
 import Products from 'components/Products';
+import SectionBg from 'components/SectionBg';
 import useProducts from 'hooks/useProduct';
 
 const App = (): JSX.Element => {
@@ -7,24 +9,29 @@ const App = (): JSX.Element => {
     return (
         <>
             <Banner />
-            <Products
-                backgroundColor="#FFF9EE"
-                descriptionTitle="Complete for you"
-                productTitle="Combo"
-                products={combos}
-            />
-            <Products
-                backgroundColor="#ffffff"
-                descriptionTitle="Delicious"
-                productTitle="Burgers"
-                products={burgers}
-            />
-            <Products
-                backgroundColor="#ffffff"
-                descriptionTitle="More?"
-                productTitle="Other"
-                products={others}
-            />
+            <SectionBg backgroundColor="#FFF9EE">
+                <Products
+                    descriptionTitle="Complete for you"
+                    productTitle="Combo"
+                    products={combos}
+                />
+            </SectionBg>
+            <SectionBg>
+                <>
+                    <Products
+                        descriptionTitle="Delicious"
+                        productTitle="Burgers"
+                        products={burgers}
+                    />
+                    <Products
+                        margin="-50px auto auto auto"
+                        descriptionTitle="More?"
+                        productTitle="Other"
+                        products={others}
+                    />
+                </>
+            </SectionBg>
+            <Footer />
         </>
     );
 };
