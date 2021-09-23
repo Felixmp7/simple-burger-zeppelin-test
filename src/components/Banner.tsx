@@ -20,7 +20,7 @@ const Logo = styled.img`
 const Banner = (): JSX.Element => (
     <Container>
         <Logo src={logo} alt="Burger Logo" />
-        <ShoppingCart text="View order" price={11.99} />
+        <ShoppingCart text="View order" />
     </Container>
 );
 
