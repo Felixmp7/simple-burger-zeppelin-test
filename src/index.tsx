@@ -1,14 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import styled from 'styled-components';
+import App from 'App';
 import reportWebVitals from './reportWebVitals';
 
+const Container = styled.div`
+    width: 1440px;
+    margin: auto;
+`;
+
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+    <React.StrictMode>
+        <Container>
+            <App />
+        </Container>
+    </React.StrictMode>,
+    document.getElementById('root'),
 );
 
 // If you want to start measuring performance in your app, pass a function
