@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import { IProduct, IProductStyle } from 'types';
 import useDisableBodyScroll from 'hooks/useDisableBodyScroll';
 import ProductModal from './widgets/ProductModal';
-import ProductActions from './ProductActions';
+import ProductActions from './widgets/ProductActions';
+import { breakPoints } from '../constants';
 
 const Container = styled.div`
     position: relative;
@@ -30,6 +31,27 @@ const Container = styled.div`
         font-size: 12px;
         color: #6C707B;
     }
+
+    @media screen and (max-width: ${breakPoints.laptopMd}) {
+        width: 216px;
+    }
+
+    @media screen and (max-width: ${breakPoints.tablet}) {
+        .description {
+            display: none;
+        }
+    }
+
+    @media screen and (max-width: ${breakPoints.mobileMd}) {
+        display: flex;
+        width: 288px;
+        .card {
+            width: 160px;
+        }
+        .name {
+            font-size: 13px;
+        }
+    }
 `;
 
 const Image = styled.div<IProductStyle>`
@@ -38,6 +60,12 @@ const Image = styled.div<IProductStyle>`
     overflow: hidden;
     background-image: ${({ image }) => `url(${image})`};
     background-size: cover;
+
+    @media screen and (max-width: ${breakPoints.mobileMd}) {
+        width: 128px;
+        height: 100%;
+        background-position: center;
+    }
 `;
 
 const Product: FC<IProduct> = (props) => {

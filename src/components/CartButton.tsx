@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import icon from 'assets/icons/car-icon.svg';
+import { breakPoints } from '../constants';
 
 const Button = styled.button<{ remove?: boolean }>`
     font-size: 12px;
@@ -23,6 +24,19 @@ const Button = styled.button<{ remove?: boolean }>`
 
     > p {
         margin-left: 10px;
+    }
+
+    @media screen and (max-width: ${breakPoints.laptopXl}) {
+        width: 84px;
+    }
+
+    @media screen and (max-width: ${breakPoints.mobileMd}) {
+        width: 100%;
+        margin-top: 7px;
+
+        > img {
+            width: 13px;
+        }
     }
 `;
 

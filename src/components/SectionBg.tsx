@@ -2,12 +2,14 @@ import { FC, ReactChild } from 'react';
 import styled from 'styled-components';
 import rightFigure from 'assets/vectors/combos-vector-right.svg';
 import leftFigure from 'assets/vectors/combos-vector-left.svg';
+import { breakPoints } from '../constants';
 
 interface IStyles {
     background?: string;
     bgImage?: string;
     left?: number | string;
     right?: number | string;
+    padding?: string;
 }
 
 const Section = styled.section<IStyles>`
@@ -15,6 +17,7 @@ const Section = styled.section<IStyles>`
     position: relative;
     background-color: ${({ background }) => background};
     border-radius: 0 0 40px 40px;
+    padding: ${({ padding }) => padding};
 `;
 
 const BgFigure = styled.div<IStyles>`
@@ -26,16 +29,23 @@ const BgFigure = styled.div<IStyles>`
     background-image: ${({ bgImage }) => `url(${bgImage})`};
     left: ${({ left }) => left};
     right: ${({ right }) => right};
+
+    @media screen and (max-width: ${breakPoints.laptopMd}) {
+        display: none;
+    }
 `;
 
 interface IProps {
     children: ReactChild;
     backgroundColor?: string | undefined;
     hasFigures?: boolean | undefined;
+    padding?: string;
 }
 
-const SectionBg: FC<IProps> = ({ children, backgroundColor, hasFigures }) => (
-    <Section background={backgroundColor}>
+const SectionBg: FC<IProps> = ({
+    children, backgroundColor, hasFigures, padding,
+}) => (
+    <Section background={backgroundColor} padding={padding}>
         {hasFigures && (
             <>
                 <BgFigure left={0} right="auto" bgImage={leftFigure} />
@@ -49,6 +59,7 @@ const SectionBg: FC<IProps> = ({ children, backgroundColor, hasFigures }) => (
 SectionBg.defaultProps = {
     backgroundColor: '#fff',
     hasFigures: true,
+    padding: '48.3px 0',
 };
 
 export default SectionBg;

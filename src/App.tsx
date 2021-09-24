@@ -23,9 +23,8 @@ const App = (): JSX.Element => {
                     products={burgers}
                 />
             </SectionBg>
-            <SectionBg hasFigures={false}>
+            <SectionBg hasFigures={false} padding="0px">
                 <Products
-                    margin="-50px auto auto auto"
                     descriptionTitle="More?"
                     productTitle="Other"
                     products={others}
