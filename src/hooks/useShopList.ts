@@ -1,5 +1,5 @@
 import { SetterOrUpdater, useRecoilState } from 'recoil';
-import { shopCountAtom, shopListAtom } from 'RecoilState';
+import { shopCountAtom, shopListAtom } from 'recoilState';
 
 type ShopListProps = {
     shopList: Array<any>;
@@ -11,16 +11,16 @@ type ShopListProps = {
 
 const useShopList = (): ShopListProps => {
     const [shopList, setShopList] = useRecoilState(shopListAtom);
-    const [shopCount, setShopCount] = useRecoilState(shopCountAtom);
+    const [shopCount, setShopCount] = useRecoilState<string>(shopCountAtom);
 
     const handleAddOrRemove = (isRemove: boolean, price: string): void => {
         let result: string;
         const priceNumber = parseFloat(price);
         const shopCountNumber = parseFloat(shopCount);
         if (isRemove) {
-            result = String(shopCountNumber - priceNumber);
+            result = (shopCountNumber - priceNumber).toFixed(2);
         } else {
-            result = String(shopCountNumber + priceNumber);
+            result = (shopCountNumber + priceNumber).toFixed(2);
         }
         setShopCount(result);
     };
