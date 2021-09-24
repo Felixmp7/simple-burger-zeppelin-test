@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { IProduct } from 'types';
 import Title from './Title';
-import Product from './widgets/Product';
+import Product from './Product';
 
 const ContainerContent = styled.div<{ margin?: string}>`
     margin: ${({ margin }) => margin};
