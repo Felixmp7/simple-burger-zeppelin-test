@@ -1,6 +1,7 @@
 import Price from 'components/widgets/Price';
 import CarButton from 'components/CartButton';
 import styled from 'styled-components';
+import { breakPoints } from '../../constants';
 
 const ContainerActions = styled.div`
     display: flex;
@@ -16,7 +17,26 @@ const ContainerActions = styled.div`
         height: 32px;
         background: #EFF0F2;
         border-radius: 4px;
-}`;
+
+    }
+
+    @media screen and (max-width: ${breakPoints.laptopXl}) {
+        .bubble {
+            width: 84px;
+        }
+    }
+
+    @media screen and (max-width: ${breakPoints.tablet}) {
+        margin-top: 30px;
+    }
+
+    @media screen and (max-width: ${breakPoints.mobileMd}) {
+        flex-direction: column;
+        .bubble {
+            width: 100%;
+        }
+    }
+`;
 
 type Props = {
     price: string | number;
