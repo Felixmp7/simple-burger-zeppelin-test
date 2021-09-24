@@ -7,7 +7,7 @@ type Props = {
     productType: string;
 };
 
-const ProductDetails = ({ handleTotalPrice, productType }: Props): JSX.Element => {
+const AdditionalTopics = ({ handleTotalPrice, productType }: Props): JSX.Element => {
     if (productType === 'burger') {
         return <Toppings />;
     }
@@ -37,4 +37,4 @@ const ProductDetails = ({ handleTotalPrice, productType }: Props): JSX.Element =
     );
 };
 
-export default ProductDetails;
+export default AdditionalTopics;

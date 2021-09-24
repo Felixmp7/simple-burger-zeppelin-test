@@ -1,4 +1,4 @@
-import Price from 'components/Price';
+import Price from 'components/widgets/Price';
 import CarButton from 'components/CartButton';
 import styled from 'styled-components';
 

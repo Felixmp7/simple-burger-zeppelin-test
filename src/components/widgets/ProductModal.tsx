@@ -4,7 +4,7 @@ import { IProduct, IProductStyle } from 'types';
 import close from 'assets/icons/close.svg';
 import carIcon from 'assets/icons/car-icon.svg';
 import useShopList from 'hooks/useShopList';
-import ProductDetails from '../ProductDetails';
+import AdditionalTopics from '../AdditionalTopics';
 import ShoppingBar from './ShoppingBar';
 import { breakPoints } from '../../constants';
 
@@ -151,7 +151,10 @@ const ProductModal: FC<IProductModal> = ({
                     </button>
                 </div>
                 <div className="container-additional-topics">
-                    <ProductDetails productType={productType} handleTotalPrice={handleTotalPrice} />
+                    <AdditionalTopics
+                        productType={productType}
+                        handleTotalPrice={handleTotalPrice}
+                    />
                 </div>
                 <div className="container-add-to-order">
                     <ShoppingBar

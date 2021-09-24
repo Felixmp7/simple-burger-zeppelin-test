@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import shopping from 'assets/icons/shop-icon.svg';
-import Price from 'components/Price';
+import Price from 'components/widgets/Price';
 import { colors } from '../../constants';
 import Button from './Button';
 

@@ -2,11 +2,11 @@ import { SetterOrUpdater, useRecoilState } from 'recoil';
 import { shopCountAtom, shopListAtom } from 'recoilState';
 
 type ShopListProps = {
-    shopList: Array<any>;
+    shopList: Array<unknown>;
     shopCount: string;
     setShopList: SetterOrUpdater<never[]>;
     setShopCount: SetterOrUpdater<string>;
-    handleAddOrRemove: any;
+    handleAddOrRemove: (isRemove: boolean, price: string) => void;
 };
 
 const useShopList = (): ShopListProps => {

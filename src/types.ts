@@ -11,7 +11,7 @@ export interface IProduct {
     description: string;
     productType: string;
     price: number;
-    sideDishes: SideDishesProps;
+    // sideDishes: SideDishesProps;
 }
 
 export type Products = {

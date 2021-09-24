@@ -41,22 +41,22 @@ const Image = styled.div<IProductStyle>`
 `;
 
 const Product: FC<IProduct> = (props) => {
-    const [isDetailsOpen, setIsDetailsOpen] = useState(false);
-    useDisableBodyScroll(isDetailsOpen);
+    const [isConfirmProduct, setIsConfirmProductOpen] = useState(false);
+    useDisableBodyScroll(isConfirmProduct);
     const {
         image, name, description, price,
     } = props;
 
     return (
         <Container>
-            {isDetailsOpen && (
-                <ProductModal {...props} closeModal={() => setIsDetailsOpen(false)} />
+            {isConfirmProduct && (
+                <ProductModal {...props} closeModal={() => setIsConfirmProductOpen(false)} />
             )}
             <Image image={image} />
             <div className="card">
                 <p className="name">{name}</p>
                 <p className="description">{description}</p>
-                <ProductActions handleClick={() => setIsDetailsOpen(true)} price={price} />
+                <ProductActions handleClick={() => setIsConfirmProductOpen(true)} price={price} />
             </div>
         </Container>
     );

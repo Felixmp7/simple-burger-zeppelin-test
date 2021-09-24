@@ -5,7 +5,6 @@ import doubleBurgerCheese from 'assets/products/double-burger-cheese.png';
 import fries from 'assets/products/fries.png';
 import soda from 'assets/products/soda.png';
 import { Products } from 'types';
-import { toppings, sizes, sodaFlavours } from '../constants';
 
 const data = {
     combos: [
@@ -16,11 +15,6 @@ const data = {
             productType: 'combo',
             description: 'Simple but jucy burger. Choose your toppings.',
             price: 9.99,
-            sideDishes: {
-                toppings,
-                sizes,
-                sodaFlavours,
-            },
         },
         {
             id: 2,
@@ -29,11 +23,7 @@ const data = {
             productType: 'combo',
             description: 'Double jucy delicious burger. Choose your toppings.',
             price: 10.99,
-            sideDishes: {
-                toppings,
-                sizes,
-                sodaFlavours,
-            },
+
         },
         {
             id: 3,
@@ -42,11 +32,7 @@ const data = {
             productType: 'combo',
             description: 'What’s a burger without cheese? Choose your toppings.',
             price: 11.99,
-            sideDishes: {
-                toppings,
-                sizes,
-                sodaFlavours,
-            },
+
         },
         {
             id: 4,
@@ -55,11 +41,7 @@ const data = {
             productType: 'combo',
             description: 'What’s a burger without melted delicious DOUBLE cheese?',
             price: 15.99,
-            sideDishes: {
-                toppings,
-                sizes,
-                sodaFlavours,
-            },
+
         },
     ],
     burgers: [
@@ -70,9 +52,6 @@ const data = {
             productType: 'burger',
             description: 'Simple but jucy burger. Choose your toppings.',
             price: 6.25,
-            sideDishes: {
-                toppings,
-            },
         },
         {
             id: 6,
@@ -81,9 +60,6 @@ const data = {
             productType: 'burger',
             description: 'Double jucy delicious burger. Choose your toppings.',
             price: 8.49,
-            sideDishes: {
-                toppings,
-            },
         },
         {
             id: 7,
@@ -92,9 +68,6 @@ const data = {
             productType: 'burger',
             description: 'What’s a burger without cheese? Choose your toppings.',
             price: 9.00,
-            sideDishes: {
-                toppings,
-            },
         },
         {
             id: 8,
@@ -103,9 +76,6 @@ const data = {
             productType: 'burger',
             description: 'What’s a burger without melted delicious DOUBLE cheese?',
             price: 13.00,
-            sideDishes: {
-                toppings,
-            },
         },
     ],
     others: [
@@ -116,9 +86,6 @@ const data = {
             productType: 'fries',
             description: 'Crunchy unique fries.',
             price: 3.49,
-            sideDishes: {
-                sizes,
-            },
         },
         {
             id: 10,
@@ -127,9 +94,6 @@ const data = {
             productType: 'sodas',
             description: 'Accompany your burger with a soda.',
             price: 1.00,
-            sideDishes: {
-                sodaFlavours,
-            },
         },
     ],
 };
