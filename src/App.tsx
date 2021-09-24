@@ -17,19 +17,19 @@ const App = (): JSX.Element => {
                 />
             </SectionBg>
             <SectionBg>
-                <>
-                    <Products
-                        descriptionTitle="Delicious"
-                        productTitle="Burgers"
-                        products={burgers}
-                    />
-                    <Products
-                        margin="-50px auto auto auto"
-                        descriptionTitle="More?"
-                        productTitle="Other"
-                        products={others}
-                    />
-                </>
+                <Products
+                    descriptionTitle="Delicious"
+                    productTitle="Burgers"
+                    products={burgers}
+                />
+            </SectionBg>
+            <SectionBg hasFigures={false}>
+                <Products
+                    margin="-50px auto auto auto"
+                    descriptionTitle="More?"
+                    productTitle="Other"
+                    products={others}
+                />
             </SectionBg>
             <Footer />
         </>
