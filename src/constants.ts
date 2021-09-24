@@ -20,15 +20,15 @@ export const sodaFlavours = [
 ];
 
 export const breakPoints = {
-    xs: '320px',
-    sm: '400px',
-    md: '450px',
-    lg: '520px',
-    xl: '620px',
+    mobileXs: '320px',
+    mobileSm: '400px',
+    mobileMd: '450px',
+    mobileLg: '520px',
+    mobileXl: '620px',
     tablet: '744px',
     tablexLg: '',
     tabletXl: '',
-    laptop: '1080px',
+    laptop: '1100px',
     laptopLg: '1248px',
     laptopXl: '1440px',
     desktop: '1640px',
