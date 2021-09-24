@@ -3,7 +3,7 @@ import banner from 'assets/banner.png';
 import logo from 'assets/vectors/complete-logo.svg';
 import useShopList from 'hooks/useShopList';
 import ShoppingBar from './widgets/ShoppingBar';
-import { colors } from '../constants';
+import { breakPoints, colors } from '../constants';
 
 const Container = styled.div`
     position: relative;
@@ -11,6 +11,7 @@ const Container = styled.div`
     height: 383.7px;
     background: linear-gradient(180deg, rgba(0, 0, 0, 0.76) 0%, rgba(0, 0, 0, 0) 73.31%), url(${banner});
     background-size: 100%;
+    background-repeat: no-repeat;
     border-radius: 0px 0px 40px 40px;
 
     .container-total-price {
@@ -23,12 +24,52 @@ const Container = styled.div`
         background-color: white;
         border-radius: 0px 0px 10px 10px;
     }
+
+    @media screen and (max-width: ${breakPoints.laptopLg}) {
+        height: 320px;
+        background-size: cover;
+        background-position: center;
+    }
+
+    @media screen and (max-width: ${breakPoints.tablet}) {
+        height: 264px;
+
+        .container-total-price {
+            width: 216.48px;
+            right: 24px;
+        }
+    }
+
+    @media screen and (max-width: ${breakPoints.mobileMd}) {
+        height: 272px;
+
+        .container-total-price {
+            width: 176px;
+            height: 54px;
+            right: 0;
+            padding: 8px;
+        }
+    }
+
 `;
 
 const Logo = styled.img`
     position: absolute;
     top: 12.74px;
     left: 104px;
+    width: auto;
+    height: auto;
+
+    @media screen and (max-width: ${breakPoints.tablet}) {
+        left: 29.07px;
+        top: 4px;
+    }
+
+    @media screen and (max-width: ${breakPoints.mobileMd}) {
+        width: 99.54px;
+        height: 53.88px;
+        left: 20px;
+    }
 `;
 
 const Banner = (): JSX.Element => {
