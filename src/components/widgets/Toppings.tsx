@@ -53,7 +53,7 @@ const Toppings = (): JSX.Element => {
         <>
             <Title>Toppings</Title>
             <Container>
-                {toppings.map(({ name }: any) => {
+                {toppings.map(({ name }) => {
                     const isChecked = toppingsAdded.some((item) => item === name);
                     const icon = isChecked ? squareChecked : square;
 
