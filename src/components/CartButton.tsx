@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import icon from 'assets/icons/car-icon.svg';
-import useShopList from 'hooks/useShopList';
 
 const Button = styled.button<{ remove?: boolean }>`
     font-size: 12px;
@@ -28,22 +27,19 @@ const Button = styled.button<{ remove?: boolean }>`
 `;
 
 type Props = {
-    price: string | number;
+    handleClick: () => void;
     remove?: boolean;
 };
 
-const HandleCarButton = ({ remove, price }: Props): JSX.Element => {
-    const { handleAddOrRemove } = useShopList();
-    return (
-        <Button remove={remove} onClick={() => handleAddOrRemove(remove, price)}>
-            <img src={icon} alt="Add icon" />
-            <p>{remove ? 'Remove' : 'Select'}</p>
-        </Button>
-    );
-};
+const CartButton = ({ remove, handleClick }: Props): JSX.Element => (
+    <Button type="button" remove={remove} onClick={handleClick}>
+        <img src={icon} alt="Add icon" />
+        <p>{remove ? 'Remove' : 'Select'}</p>
+    </Button>
+);
 
-HandleCarButton.defaultProps = {
+CartButton.defaultProps = {
     remove: false,
 };
 
-export default HandleCarButton;
+export default CartButton;
