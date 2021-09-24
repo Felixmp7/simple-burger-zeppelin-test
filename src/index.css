@@ -23,3 +23,13 @@ code {
     font-family: "Cocogoose Pro Block";
     src: url("assets/fonts/Cocogoose/Cocogoose-Pro-Letterpress-Trial.woff") format('woff');
 }
+
+.container-layout {
+    width: 1440px;
+    margin: auto;
+}
+
+.container-card {
+  background: #FFFFFF;
+  padding: 16px;
+}
