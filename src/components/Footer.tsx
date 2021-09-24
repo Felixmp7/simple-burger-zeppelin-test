@@ -8,6 +8,7 @@ const StyledFooter = styled.footer`
     justify-content: center;
     align-items: center;
     background-color: black;
+    margin-top: 100px;
 `;
 
 const Footer = (): JSX.Element => (
