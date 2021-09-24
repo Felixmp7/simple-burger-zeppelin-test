@@ -2,12 +2,17 @@ import { useState } from 'react';
 import squareChecked from 'assets/icons/square-checked.svg';
 import square from 'assets/icons/square.svg';
 import styled from 'styled-components';
-import { toppings } from '../../constants';
+import { breakPoints, toppings } from '../../constants';
 import Button from './Button';
+import CheckBox from './CheckBox';
 
 const Container = styled.div`
     display: grid;
     grid-template-columns: repeat(5, minmax(0, 1fr));
+
+    @media screen and (max-width: ${breakPoints.tablet}) {
+        display: block;
+    }
 `;
 const Title = styled.h4`
     font-style: normal;
@@ -24,14 +29,6 @@ const StyledButton = styled(Button)<{ onClick?: (topping: string) => void }>`
     display: flex;
     align-items: center;
     margin-bottom: 20px;
-
-    > span {
-        font-weight: normal;
-        font-size: 12px;
-        line-height: 18px;
-        margin-left: 8px;
-        padding: 0;
-    }
 `;
 
 const Toppings = (): JSX.Element => {
@@ -59,10 +56,7 @@ const Toppings = (): JSX.Element => {
 
                     return (
                         <StyledButton key={name} onClick={() => handleTopping(name)}>
-                            <>
-                                <img src={icon} alt="Checkbox icon" />
-                                <span>{name}</span>
-                            </>
+                            <CheckBox icon={icon} label={name} />
                         </StyledButton>
                     );
                 })}
