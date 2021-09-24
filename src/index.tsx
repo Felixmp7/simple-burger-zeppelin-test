@@ -1,22 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import styled from 'styled-components';
 import App from 'App';
 import { RecoilRoot } from 'recoil';
 import reportWebVitals from './reportWebVitals';
 
-const Container = styled.div`
-    width: 1440px;
-    margin: auto;
-`;
-
 ReactDOM.render(
     <React.StrictMode>
         <RecoilRoot>
-            <Container>
+            <div className="container-layout">
                 <App />
-            </Container>
+            </div>
         </RecoilRoot>
     </React.StrictMode>,
     document.getElementById('root'),
