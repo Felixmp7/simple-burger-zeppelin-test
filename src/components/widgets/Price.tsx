@@ -12,9 +12,7 @@ const Container = styled.span`
 type Props = { price: string | number };
 
 const Price = ({ price }: Props): JSX.Element => (
-    <Container>
-        {price}
-    </Container>
+    <Container>{price}</Container>
 );
 
 export default Price;
