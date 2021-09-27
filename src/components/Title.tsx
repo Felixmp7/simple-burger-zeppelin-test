@@ -4,29 +4,29 @@ const Container = styled.div`
     display: inline-flex;
     flex-direction: column;
     align-items: center;
-`;
-const DescriptionTitleContainer = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0;
-    margin-bottom: -15px;
-`;
 
-const DescriptionTitle = styled.h2`
-    font-family: 'Antonio';
-    line-height: 0px;
-    font-weight: 400;
-    font-size: 16px;
-    text-align: center;
-    color: #4C3260;
-    text-transform: uppercase;
-`;
+    .description-title-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0;
+        margin-bottom: -15px;
+    }
+    .description-title {
+        font-family: 'Antonio';
+        line-height: 0px;
+        font-weight: 400;
+        font-size: 16px;
+        text-align: center;
+        color: #4C3260;
+        text-transform: uppercase;
+    }
 
-const ProductTitleContainer = styled.div`
-    position: relative;
-    display: flex;
-    padding: 0;
+    .product-title-container {
+        position: relative;
+        display: flex;
+        padding: 0;
+    }
 `;
 
 const Line = styled.div`
@@ -61,22 +61,27 @@ const ProductShadow = styled.h3`
 `;
 
 type Props = {
-    descriptionTitle: string;
-    productTitle: string;
-}
+    descriptionTitle?: string;
+    productTitle?: string;
+};
 
-const Title = ({ descriptionTitle = 'Titulo', productTitle = 'Subtitulo' } :Props) :JSX.Element => (
+const Title = ({ descriptionTitle, productTitle } :Props) :JSX.Element => (
     <Container>
-        <DescriptionTitleContainer>
+        <div className="description-title-container">
             <Line />
-            <DescriptionTitle>{descriptionTitle}</DescriptionTitle>
+            <h2 className="description-title">{descriptionTitle}</h2>
             <Line />
-        </DescriptionTitleContainer>
-        <ProductTitleContainer>
+        </div>
+        <div className="product-title-container">
             <ProductTitle>{productTitle}</ProductTitle>
             <ProductShadow>{productTitle}</ProductShadow>
-        </ProductTitleContainer>
+        </div>
     </Container>
 );
+
+Title.defaultProps = {
+    descriptionTitle: 'Description title',
+    productTitle: 'Title',
+};
 
 export default Title;
