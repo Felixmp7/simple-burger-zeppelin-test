@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 import circleChecked from 'assets/icons/circle-checked.svg';
 import circle from 'assets/icons/circle.svg';
 import styled from 'styled-components';
-import { breakPoints, sodaFlavours } from '../../constants';
+import { breakPoints, sodaFlavoursList } from '../../constants';
 import Button from './Button';
 import CheckBox from './CheckBox';
 
@@ -32,26 +32,27 @@ const StyledButton = styled(Button) <{ onClick?: (topping: string) => void }>`
     margin-bottom: 15px;
 `;
 
-const SodaFlavours = (): JSX.Element => {
-    const [optionSelected, setOptionSelected] = useState<string>('Cola');
-
-    return (
-        <>
-            <Title>Soda Flavours</Title>
-            <Container>
-                {sodaFlavours.map(({ name }) => {
-                    const isChecked = optionSelected === name;
-                    const icon = isChecked ? circleChecked : circle;
-
-                    return (
-                        <StyledButton key={name} onClick={() => setOptionSelected(name)}>
-                            <CheckBox icon={icon} label={name} />
-                        </StyledButton>
-                    );
-                })}
-            </Container>
-        </>
-    );
+type Props = {
+    sodaFlavour: string;
+    setSodaFlavour: Dispatch<SetStateAction<string>>;
 };
+
+const SodaFlavours = ({ setSodaFlavour, sodaFlavour }: Props): JSX.Element => (
+    <>
+        <Title>Soda Flavours</Title>
+        <Container>
+            {sodaFlavoursList.map(({ name }) => {
+                const isChecked = sodaFlavour === name;
+                const icon = isChecked ? circleChecked : circle;
+
+                return (
+                    <StyledButton key={name} onClick={() => setSodaFlavour(name)}>
+                        <CheckBox icon={icon} label={name} />
+                    </StyledButton>
+                );
+            })}
+        </Container>
+    </>
+);
 
 export default SodaFlavours;

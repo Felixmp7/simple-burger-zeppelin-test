@@ -1,8 +1,8 @@
-import { useState } from 'react';
 import circleChecked from 'assets/icons/circle-checked.svg';
 import circle from 'assets/icons/circle.svg';
 import styled from 'styled-components';
-import { sizes } from '../../constants';
+import { SizeProps } from 'types';
+import { sizesList } from '../../constants';
 import Button from './Button';
 import CheckBox from './CheckBox';
 
@@ -37,39 +37,30 @@ const StyledButton = styled(Button) <{ onClick?: (topping: string) => void }>`
 `;
 
 type Props = {
-    handleTotalPrice: (additional: string) => void;
+    size: SizeProps;
+    handleExtraCost: (additional: SizeProps) => void;
 };
 
-const Sizes = ({ handleTotalPrice }: Props): JSX.Element => {
-    const [optionSelected, setOptionSelected] = useState<string>('Small');
+const Sizes = ({ size, handleExtraCost }: Props): JSX.Element => (
+    <>
+        <Title>Sizes</Title>
+        {sizesList.map(({ name, extraCost }) => {
+            const isChecked = size.name === name;
+            const icon = isChecked ? circleChecked : circle;
+            const extraCostClass = extraCost ? 'with-bracket' : '';
 
-    const handleSelectOption = (option: string, extraCost: number) => {
-        const extraCostString = extraCost.toFixed(2);
-        handleTotalPrice(extraCostString);
-        setOptionSelected(option);
-    };
-
-    return (
-        <>
-            <Title>Sizes</Title>
-            {sizes.map(({ name, extraCost }) => {
-                const isChecked = optionSelected === name;
-                const icon = isChecked ? circleChecked : circle;
-                const extraCostClass = extraCost ? 'with-bracket' : '';
-
-                return (
-                    <StyledButton key={name} onClick={() => handleSelectOption(name, extraCost)}>
-                        <>
-                            <CheckBox icon={icon} classes={extraCostClass} label={name} />
-                            {extraCost !== 0 && (
-                                <span className="extra-cost">{`${extraCost.toFixed(2)})`}</span>
-                            )}
-                        </>
-                    </StyledButton>
-                );
-            })}
-        </>
-    );
-};
+            return (
+                <StyledButton key={name} onClick={() => handleExtraCost({ name, extraCost })}>
+                    <>
+                        <CheckBox icon={icon} classes={extraCostClass} label={name} />
+                        {extraCost !== '0.00' && (
+                            <span className="extra-cost">{`${extraCost})`}</span>
+                        )}
+                    </>
+                </StyledButton>
+            );
+        })}
+    </>
+);
 
 export default Sizes;

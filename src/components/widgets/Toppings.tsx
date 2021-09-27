@@ -1,8 +1,7 @@
-import { useState } from 'react';
 import squareChecked from 'assets/icons/square-checked.svg';
 import square from 'assets/icons/square.svg';
 import styled from 'styled-components';
-import { breakPoints, toppings } from '../../constants';
+import { breakPoints, toppingsList } from '../../constants';
 import Button from './Button';
 import CheckBox from './CheckBox';
 
@@ -31,38 +30,27 @@ const StyledButton = styled(Button)<{ onClick?: (topping: string) => void }>`
     margin-bottom: 15px;
 `;
 
-const Toppings = (): JSX.Element => {
-    const [toppingsAdded, setToppingsAdded] = useState<Array<string>>([]);
-
-    const handleTopping = (topping: string) : void => {
-        let newToppingsList;
-        const alreadySelected = toppingsAdded.some((item) => item === topping);
-
-        if (alreadySelected) {
-            newToppingsList = toppingsAdded.filter((item) => item !== topping);
-        } else {
-            newToppingsList = [...toppingsAdded, topping];
-        }
-        setToppingsAdded([...newToppingsList]);
-    };
-
-    return (
-        <>
-            <Title>Toppings</Title>
-            <Container>
-                {toppings.map(({ name }) => {
-                    const isChecked = toppingsAdded.some((item) => item === name);
-                    const icon = isChecked ? squareChecked : square;
-
-                    return (
-                        <StyledButton key={name} onClick={() => handleTopping(name)}>
-                            <CheckBox icon={icon} label={name} />
-                        </StyledButton>
-                    );
-                })}
-            </Container>
-        </>
-    );
+type Props = {
+    toppings: Array<string>;
+    setToppings: (topping: string) => void;
 };
+
+const Toppings = ({ toppings, setToppings }: Props): JSX.Element => (
+    <>
+        <Title>Toppings</Title>
+        <Container>
+            {toppingsList.map(({ name }) => {
+                const isChecked = toppings.some((item) => item === name);
+                const icon = isChecked ? squareChecked : square;
+
+                return (
+                    <StyledButton key={name} onClick={() => setToppings(name)}>
+                        <CheckBox icon={icon} label={name} />
+                    </StyledButton>
+                );
+            })}
+        </Container>
+    </>
+);
 
 export default Toppings;
