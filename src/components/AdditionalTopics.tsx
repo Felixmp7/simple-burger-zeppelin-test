@@ -32,7 +32,7 @@ const Container = styled.div`
 `;
 
 type Props = {
-    productType: string;
+    productSlug: string;
     size: SizeProps;
     toppings: string[];
     sodaFlavour: string;
@@ -42,7 +42,7 @@ type Props = {
 };
 
 const AdditionalTopics = ({
-    productType,
+    productSlug,
     size,
     toppings,
     sodaFlavour,
@@ -50,15 +50,15 @@ const AdditionalTopics = ({
     setToppings,
     setSodaFlavour,
 }: Props): JSX.Element => {
-    if (productType === 'burger') {
+    if (productSlug === 'burger') {
         return <Toppings toppings={toppings} setToppings={setToppings} />;
     }
 
-    if (productType === 'fries') {
+    if (productSlug === 'fries') {
         return <Sizes size={size} handleExtraCost={handleExtraCost} />;
     }
 
-    if (productType === 'sodas') {
+    if (productSlug === 'soda') {
         return <SodaFlavours sodaFlavour={sodaFlavour} setSodaFlavour={setSodaFlavour} />;
     }
 

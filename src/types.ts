@@ -26,6 +26,7 @@ export interface IProduct {
     name: string;
     description: string;
     productType: string;
+    productSlug: string;
     price: string;
     additionals?: AdditionalTopicsProps | undefined;
 }

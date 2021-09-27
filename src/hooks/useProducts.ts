@@ -12,6 +12,7 @@ const data = [
         name: 'Combo Burger',
         image: burger,
         productType: 'combo',
+        productSlug: 'combo',
         description: 'Simple but jucy burger. Choose your toppings.',
         price: '9.99',
         additionals: {
@@ -25,6 +26,7 @@ const data = [
         name: 'Combo Double Burger',
         image: doubleBurger,
         productType: 'combo',
+        productSlug: 'combo',
         description: 'Double jucy delicious burger. Choose your toppings.',
         price: '10.99',
         additionals: {
@@ -39,6 +41,7 @@ const data = [
         name: 'Combo Burger + Cheese',
         image: burgerCheese,
         productType: 'combo',
+        productSlug: 'combo',
         description: 'What’s a burger without cheese? Choose your toppings.',
         price: '11.99',
         additionals: {
@@ -53,6 +56,7 @@ const data = [
         name: 'Combo Double Burger + Cheese',
         image: doubleBurgerCheese,
         productType: 'combo',
+        productSlug: 'combo',
         description: 'What’s a burger without melted delicious DOUBLE cheese?',
         price: '15.99',
         additionals: {
@@ -67,6 +71,7 @@ const data = [
         name: 'Burger',
         image: burger,
         productType: 'burger',
+        productSlug: 'burger',
         description: 'Simple but jucy burger. Choose your toppings.',
         price: '6.25',
         additionals: {
@@ -78,6 +83,7 @@ const data = [
         name: 'Double Burger',
         image: doubleBurger,
         productType: 'burger',
+        productSlug: 'burger',
         description: 'Double jucy delicious burger. Choose your toppings.',
         price: '8.49',
         additionals: {
@@ -89,6 +95,7 @@ const data = [
         name: 'Burger + Cheese',
         image: burgerCheese,
         productType: 'burger',
+        productSlug: 'burger',
         description: 'What’s a burger without cheese? Choose your toppings.',
         price: '9.00',
         additionals: {
@@ -100,6 +107,7 @@ const data = [
         name: 'Double Burger + Cheese',
         image: doubleBurgerCheese,
         productType: 'burger',
+        productSlug: 'burger',
         description: 'What’s a burger without melted delicious DOUBLE cheese?',
         price: '13.00',
         additionals: {
@@ -111,6 +119,7 @@ const data = [
         name: 'Fries',
         image: fries,
         productType: 'other',
+        productSlug: 'fries',
         description: 'Crunchy unique fries.',
         price: '3.49',
         additionals: {
@@ -122,6 +131,7 @@ const data = [
         name: 'Soda',
         image: soda,
         productType: 'other',
+        productSlug: 'soda',
         description: 'Accompany your burger with a soda.',
         price: '1.00',
         additionals: {
