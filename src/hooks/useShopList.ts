@@ -1,35 +1,37 @@
 import { SetterOrUpdater, useRecoilState } from 'recoil';
-import { shopCountAtom, shopListAtom } from 'recoilState';
+import shopListAtom from 'recoilState';
+import { IProduct } from 'types';
 
 type ShopListProps = {
-    shopList: Array<unknown>;
-    shopCount: string;
-    setShopList: SetterOrUpdater<never[]>;
-    setShopCount: SetterOrUpdater<string>;
-    handleAddOrRemove: (isRemove: boolean, price: string) => void;
+    shopList: Array<IProduct>;
+    getTotalPrice: () => string;
+    setShopList: SetterOrUpdater<Array<IProduct>>;
+    handleAddOrRemove: (product: IProduct, isRemove: boolean) => void;
 };
 
 const useShopList = (): ShopListProps => {
     const [shopList, setShopList] = useRecoilState(shopListAtom);
-    const [shopCount, setShopCount] = useRecoilState<string>(shopCountAtom);
 
-    const handleAddOrRemove = (isRemove: boolean, price: string): void => {
-        let result: string;
-        const priceNumber = parseFloat(price);
-        const shopCountNumber = parseFloat(shopCount);
+    const handleAddOrRemove = (product: IProduct, isRemove: boolean): void => {
+        const result: Array<IProduct> = [...shopList];
         if (isRemove) {
-            result = (shopCountNumber - priceNumber).toFixed(2);
+            const orderIndex = shopList.findIndex(({ id }) => id === product.id);
+            result.splice(orderIndex, 1);
         } else {
-            result = (shopCountNumber + priceNumber).toFixed(2);
+            result.push(product);
         }
-        setShopCount(result);
+        setShopList(result);
+    };
+
+    const getTotalPrice = () => {
+        const total = shopList.reduce((totalPrice, { price }) => totalPrice + parseFloat(price), 0);
+        return total.toFixed(2);
     };
 
     return {
         shopList,
-        shopCount,
+        getTotalPrice,
         setShopList,
-        setShopCount,
         handleAddOrRemove,
     };
 };
