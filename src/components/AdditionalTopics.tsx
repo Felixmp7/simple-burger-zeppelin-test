@@ -1,4 +1,6 @@
+import { Dispatch, SetStateAction } from 'react';
 import styled from 'styled-components';
+import { SizeProps } from 'types';
 import { breakPoints } from '../constants';
 import Sizes from './widgets/Sizes';
 import SodaFlavours from './widgets/SodaFlavours';
@@ -30,35 +32,48 @@ const Container = styled.div`
 `;
 
 type Props = {
-    handleTotalPrice: (additional: string) => void;
     productType: string;
+    size: SizeProps;
+    toppings: string[];
+    sodaFlavour: string;
+    handleExtraCost: (additional: SizeProps) => void;
+    setToppings: (topping: string) => void;
+    setSodaFlavour: Dispatch<SetStateAction<string>>;
 };
 
-const AdditionalTopics = ({ handleTotalPrice, productType }: Props): JSX.Element => {
+const AdditionalTopics = ({
+    productType,
+    size,
+    toppings,
+    sodaFlavour,
+    handleExtraCost,
+    setToppings,
+    setSodaFlavour,
+}: Props): JSX.Element => {
     if (productType === 'burger') {
-        return <Toppings />;
+        return <Toppings toppings={toppings} setToppings={setToppings} />;
     }
 
     if (productType === 'fries') {
-        return <Sizes handleTotalPrice={handleTotalPrice} />;
+        return <Sizes size={size} handleExtraCost={handleExtraCost} />;
     }
 
     if (productType === 'sodas') {
-        return <SodaFlavours />;
+        return <SodaFlavours sodaFlavour={sodaFlavour} setSodaFlavour={setSodaFlavour} />;
     }
 
     return (
         <Container>
             <div className="container-sizes-soda-flavours">
                 <div className="sizes">
-                    <Sizes handleTotalPrice={handleTotalPrice} />
+                    <Sizes size={size} handleExtraCost={handleExtraCost} />
                 </div>
                 <div className="soda-flavours">
-                    <SodaFlavours />
+                    <SodaFlavours sodaFlavour={sodaFlavour} setSodaFlavour={setSodaFlavour} />
                 </div>
             </div>
             <div className="toppings">
-                <Toppings />
+                <Toppings toppings={toppings} setToppings={setToppings} />
             </div>
         </Container>
     );

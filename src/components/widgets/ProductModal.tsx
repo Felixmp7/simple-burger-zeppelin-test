@@ -1,8 +1,8 @@
-import { FC, useState } from 'react';
 import styled from 'styled-components';
-import { IProduct, IProductStyle } from 'types';
+import { IProductStyle, IProductModalProps } from 'types';
 import close from 'assets/icons/close.svg';
 import carIcon from 'assets/icons/car-icon.svg';
+import useAdditionals from 'hooks/useAdditionals';
 import useShopList from 'hooks/useShopList';
 import AdditionalTopics from '../AdditionalTopics';
 import ShoppingBar from './ShoppingBar';
@@ -103,31 +103,29 @@ const Image = styled.div<IProductStyle>`
     background-position-x: center;
 `;
 
-interface IProductModal extends IProduct {
-    closeModal: () => void;
-}
+const ProductModal = (props: IProductModalProps) : JSX.Element => {
+    const {
+        closeModal, image, name, description, productType, price, additionals,
+    } = props;
 
-const ProductModal: FC<IProductModal> = ({
-    productType, image, name, description, price, closeModal,
-}) => {
-    const [totalPrice, setTotalPrice] = useState<string>(price.toFixed(2));
+    const {
+        totalProductPrice, toppingsAdded, sizeSelected, sodaFlavourSelected, handleTopping, handleExtraCost, handleSodaFlavour,
+    } = useAdditionals({ ...additionals, defaultPrice: price });
     const { handleAddOrRemove } = useShopList();
 
-    const handleTotalPrice = (additional: string): void => {
-        let result: string;
-        const additionalNumber = parseFloat(additional);
-        const priceNumber = parseFloat(totalPrice);
-        if (additionalNumber) {
-            result = (priceNumber + additionalNumber).toFixed(2);
-        } else {
-            result = price.toFixed(2);
-        }
-        setTotalPrice(result);
-    };
-
-    const handleClick = () => {
+    const addToCart = () => {
         const isRemove = false;
-        handleAddOrRemove(isRemove, totalPrice);
+        const newProduct = {
+            ...props,
+            productOrderId: Math.random().toString(36).slice(2),
+            price: totalProductPrice,
+            additionals: {
+                toppings: toppingsAdded,
+                size: sizeSelected,
+                sodaFlavour: sodaFlavourSelected,
+            },
+        };
+        handleAddOrRemove(newProduct, isRemove);
         closeModal();
     };
 
@@ -147,15 +145,20 @@ const ProductModal: FC<IProductModal> = ({
                 <div className="container-additional-topics">
                     <AdditionalTopics
                         productType={productType}
-                        handleTotalPrice={handleTotalPrice}
+                        handleExtraCost={handleExtraCost}
+                        size={sizeSelected}
+                        setToppings={handleTopping}
+                        toppings={toppingsAdded}
+                        setSodaFlavour={handleSodaFlavour}
+                        sodaFlavour={sodaFlavourSelected}
                     />
                 </div>
                 <div className="container-add-to-order">
                     <ShoppingBar
                         text="Add to my order"
-                        price={totalPrice}
+                        price={totalProductPrice}
                         icon={carIcon}
-                        onClick={handleClick}
+                        onClick={addToCart}
                     />
                 </div>
             </div>
