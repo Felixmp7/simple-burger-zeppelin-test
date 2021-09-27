@@ -20,7 +20,7 @@ const Title = styled.h4`
 const StyledButton = styled(Button) <{ onClick?: (topping: string) => void }>`
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     font-weight: normal;
     font-size: 12px;
     line-height: 18px;

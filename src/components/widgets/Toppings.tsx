@@ -10,7 +10,7 @@ const Container = styled.div`
     display: grid;
     grid-template-columns: repeat(5, minmax(0, 1fr));
 
-    @media screen and (max-width: ${breakPoints.tablet}) {
+    @media screen and (max-width: ${breakPoints.mobileXl}) {
         display: block;
     }
 `;
@@ -28,7 +28,7 @@ const Title = styled.h4`
 const StyledButton = styled(Button)<{ onClick?: (topping: string) => void }>`
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 `;
 
 const Toppings = (): JSX.Element => {

@@ -21,7 +21,7 @@ const Container = styled.div`
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
 
-     @media screen and (max-width: ${breakPoints.tablet}) {
+     @media screen and (max-width: ${breakPoints.mobileXl}) {
         display: block;
     }
 `;
@@ -29,7 +29,7 @@ const Container = styled.div`
 const StyledButton = styled(Button) <{ onClick?: (topping: string) => void }>`
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 `;
 
 const SodaFlavours = (): JSX.Element => {
