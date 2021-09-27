@@ -73,13 +73,14 @@ const Logo = styled.img`
 `;
 
 const Banner = (): JSX.Element => {
-    const { shopCount } = useShopList();
+    const { getTotalPrice } = useShopList();
+    const totalPrice = getTotalPrice();
 
     return (
         <Container>
             <Logo src={logo} alt="Burger Logo" />
             <div className="container-total-price">
-                <ShoppingBar text="View order" backgroundColor={colors.pink} price={shopCount} />
+                <ShoppingBar text="View order" backgroundColor={colors.pink} price={totalPrice} />
             </div>
         </Container>
     );
