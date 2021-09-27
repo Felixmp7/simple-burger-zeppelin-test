@@ -2,10 +2,10 @@ import Banner from 'components/Banner';
 import Footer from 'components/Footer';
 import Products from 'components/Products';
 import SectionBg from 'components/SectionBg';
-import useProducts from 'hooks/useProduct';
+import useProducts from 'hooks/useProducts';
 
 const App = (): JSX.Element => {
-    const { combos, burgers, others } = useProducts();
+    const { products } = useProducts();
     return (
         <>
             <Banner />
@@ -13,21 +13,21 @@ const App = (): JSX.Element => {
                 <Products
                     descriptionTitle="Complete for you"
                     productTitle="Combo"
-                    products={combos}
+                    products={products.filter(({ productType }) => productType === 'combo')}
                 />
             </SectionBg>
             <SectionBg>
                 <Products
                     descriptionTitle="Delicious"
                     productTitle="Burgers"
-                    products={burgers}
+                    products={products.filter(({ productType }) => productType === 'burger')}
                 />
             </SectionBg>
             <SectionBg hasFigures={false} padding="0px">
                 <Products
                     descriptionTitle="More?"
                     productTitle="Other"
-                    products={others}
+                    products={products.filter(({ productType }) => productType === 'other')}
                 />
             </SectionBg>
             <Footer />
