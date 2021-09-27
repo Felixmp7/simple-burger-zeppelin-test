@@ -20,7 +20,7 @@ const Modal = styled.div`
     overflow-y: auto;
 
     .container-detail-layout {
-        width: 600px;
+        width: 576px;
         margin: 80px auto;
     }
 
@@ -66,30 +66,6 @@ const Modal = styled.div`
         border-radius: 8px;
         background: #FFFFFF;
         padding: 16px;
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            grid-gap: 20px;
-
-            .sizes {
-                grid-area: 1 / 1 / 2 / 2;
-            }
-            .soda-flavours {
-                grid-area: 1 / 2 / 2 / 4;
-            }
-        }
-
-        @media screen and (max-width: ${breakPoints.tablet}) {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            grid-gap: 40px;
-
-            .grid {
-                display: flex;
-                flex-direction: column;
-            }
-        }
     }
 
     .container-add-to-order {
@@ -99,6 +75,23 @@ const Modal = styled.div`
         border-radius: 10px;
         margin-top: 20px;
     }
+
+    @media screen and (max-width: ${breakPoints.tablet}) {
+        .container-detail-layout {
+            width: 90vw;
+        }
+
+        .grid {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+
+    @media screen and (max-width: ${breakPoints.mobileSm}) {
+        .container-detail-layout {
+            width: 288px;
+        }
+    }
 `;
 
 const Image = styled.div<IProductStyle>`
@@ -107,6 +100,7 @@ const Image = styled.div<IProductStyle>`
     overflow: hidden;
     background-image: ${({ image }) => `url(${image})`};
     background-size: cover;
+    background-position-x: center;
 `;
 
 interface IProductModal extends IProduct {
