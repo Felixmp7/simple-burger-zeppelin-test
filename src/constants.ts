@@ -1,4 +1,4 @@
-export const toppings = [
+export const toppingsList = [
     { name: 'Mayonnaise' },
     { name: 'Ketchup' },
     { name: 'Letucce' },
@@ -7,11 +7,11 @@ export const toppings = [
     { name: 'Onion' },
     { name: 'Bread' },
 ];
-export const sizes = [
-    { name: 'Small', extraCost: 0 },
-    { name: 'Big', extraCost: 2.00 },
+export const sizesList = [
+    { name: 'Small', extraCost: '0.00' },
+    { name: 'Big', extraCost: '2.00' },
 ];
-export const sodaFlavours = [
+export const sodaFlavoursList = [
     { name: 'Cola' },
     { name: 'Lemon' },
     { name: 'Grapefruit' },
