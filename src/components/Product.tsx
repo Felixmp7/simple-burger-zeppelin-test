@@ -2,9 +2,10 @@ import { FC, useState } from 'react';
 import styled from 'styled-components';
 import { IProduct, IProductStyle } from 'types';
 import useDisableBodyScroll from 'hooks/useDisableBodyScroll';
-import ProductModal from './widgets/ProductModal';
+import ConfirmProduct from './ConfirmProduct';
 import ProductActions from './widgets/ProductActions';
 import { breakPoints } from '../constants';
+import ScreenModal from './widgets/ScreenModal';
 
 const Container = styled.div`
     position: relative;
@@ -78,7 +79,9 @@ const Product: FC<IProduct> = (props) => {
     return (
         <Container>
             {isConfirmProduct && (
-                <ProductModal {...props} closeModal={() => setIsConfirmProduct(false)} />
+                <ScreenModal>
+                    <ConfirmProduct {...props} closeModal={() => setIsConfirmProduct(false)} />
+                </ScreenModal>
             )}
             <Image image={image} />
             <div className="card">
