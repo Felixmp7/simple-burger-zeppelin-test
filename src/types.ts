@@ -48,6 +48,7 @@ export interface IProduct {
 
 export type Products = {
     products: Array<IProduct>;
+    isLoading: boolean;
     getProduct: (id: number) => IProduct | undefined;
 };
 
