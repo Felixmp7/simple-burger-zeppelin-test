@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { IProduct } from 'types';
-import Title from './Title';
+import Title from './widgets/Title';
 import Product from './widgets/Product';
 import { breakPoints } from '../constants';
 

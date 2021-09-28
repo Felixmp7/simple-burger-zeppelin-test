@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Dispatch, SetStateAction, useState } from 'react';
 import { CurrentAdditionalProps, SizeProps } from 'types';
 

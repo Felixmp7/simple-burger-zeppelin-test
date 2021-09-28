@@ -2,14 +2,14 @@ import Banner from 'components/Banner';
 import Footer from 'components/Footer';
 import Products from 'components/Products';
 import SectionBg from 'components/SectionBg';
-import ScreenLoader from 'components/widgets/ScreenLoader';
+import ScreenMessage from 'components/widgets/ScreenMessage';
 import useProducts from 'hooks/useProducts';
 
 const App = (): JSX.Element => {
     const { isLoading, products } = useProducts();
 
     if (isLoading) {
-        return <ScreenLoader />;
+        return <ScreenMessage message="Loading..." />;
     }
     return (
         <>
