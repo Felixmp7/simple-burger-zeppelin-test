@@ -1,12 +1,27 @@
+export type UpdateToppingsProps = {
+    productOrderId: string;
+    toppings: string[];
+};
+
+export type UpdateFlavourProps = {
+    productOrderId: string;
+    newFlavour: string;
+};
+
+export type UpdateSizeProps = {
+    productOrderId: string;
+    productSize: SizeProps;
+};
+
 export type CurrentAdditionalProps = {
-    defaultPrice: string;
+    price: string;
     toppings?: Array<string>;
     size?: SizeProps;
     sodaFlavour?: string;
 }
 export type SizeProps = {
     name: string;
-    extraCost: string | null;
+    extraCost: string;
 }
 
 export type AdditionalTopicsProps = {
