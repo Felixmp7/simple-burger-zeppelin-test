@@ -106,7 +106,7 @@ const ProductAdded: FC<IProduct> = (props) => {
         toppingsAdded,
         sizeSelected,
         sodaFlavourSelected,
-        removeOfCart,
+        removeOfOrder,
         updateSize,
         updateSoda,
         updateToppingsAdded,
@@ -128,7 +128,7 @@ const ProductAdded: FC<IProduct> = (props) => {
                     <div className="container-actions">
                         <div className="bubble"><Price price={totalProductPrice} /></div>
                         <div className="container-cart-button">
-                            <CartButton remove handleClick={removeOfCart} />
+                            <CartButton remove handleClick={removeOfOrder} />
                         </div>
                     </div>
                 </div>
