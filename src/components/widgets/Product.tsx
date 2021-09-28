@@ -112,19 +112,19 @@ const Image = styled.div<IProductStyle>`
 `;
 
 const Product: FC<IProduct> = (props) => {
-    const [isConfirmProduct, setIsConfirmProduct] = useState(false);
-    useDisableBodyScroll(isConfirmProduct);
+    const [addNewProduct, setAddNewProduct] = useState(false);
+    useDisableBodyScroll(addNewProduct);
     const {
         image, name, description, price,
     } = props;
 
     return (
         <Container>
-            {isConfirmProduct && (
+            {addNewProduct && (
                 <ScreenModal>
                     <AddNewProduct
                         {...props}
-                        closeModal={() => setIsConfirmProduct(false)}
+                        closeModal={() => setAddNewProduct(false)}
                     />
                 </ScreenModal>
             )}
@@ -136,7 +136,7 @@ const Product: FC<IProduct> = (props) => {
                     <div className="bubble"><Price price={price} /></div>
                     <div className="container-cart-button">
                         <CartButton
-                            handleClick={() => setIsConfirmProduct(true)}
+                            handleClick={() => setAddNewProduct(true)}
                         />
                     </div>
                 </div>
