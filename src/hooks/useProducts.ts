@@ -4,7 +4,8 @@ import burgerCheese from 'assets/products/burger-cheese.png';
 import doubleBurgerCheese from 'assets/products/double-burger-cheese.png';
 import fries from 'assets/products/fries.png';
 import soda from 'assets/products/soda.png';
-import { Products } from 'types';
+import { IProduct, Products } from 'types';
+import { useEffect, useState } from 'react';
 
 const data = [
     {
@@ -141,10 +142,18 @@ const data = [
 ];
 
 const useProducts = (): Products => {
+    const [products, setProducts] = useState<Array<IProduct>>([]);
     const getProduct = (id: number) => data.find((product) => product.id === id);
 
+    useEffect(() => {
+        setTimeout(() => {
+            setProducts(data);
+        }, 3000);
+    }, []);
+
     return {
-        products: data,
+        products,
+        isLoading: products.length === 0,
         getProduct,
     };
 };

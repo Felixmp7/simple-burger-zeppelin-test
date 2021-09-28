@@ -2,10 +2,15 @@ import Banner from 'components/Banner';
 import Footer from 'components/Footer';
 import Products from 'components/Products';
 import SectionBg from 'components/SectionBg';
+import ScreenLoader from 'components/widgets/ScreenLoader';
 import useProducts from 'hooks/useProducts';
 
 const App = (): JSX.Element => {
-    const { products } = useProducts();
+    const { isLoading, products } = useProducts();
+
+    if (isLoading) {
+        return <ScreenLoader />;
+    }
     return (
         <>
             <Banner />
