@@ -17,7 +17,7 @@ const data = [
         price: '9.99',
         additionals: {
             toppings: undefined,
-            size: { name: 'Small', extraCost: '2.00' },
+            size: { name: 'Small', extraCost: '0.00' },
             sodaFlavour: 'Cola',
         },
     },
@@ -31,7 +31,7 @@ const data = [
         price: '10.99',
         additionals: {
             toppings: undefined,
-            size: { name: 'Small', extraCost: '2.00' },
+            size: { name: 'Small', extraCost: '0.00' },
             sodaFlavour: 'Cola',
         },
 
@@ -46,7 +46,7 @@ const data = [
         price: '11.99',
         additionals: {
             toppings: undefined,
-            size: { name: 'Small', extraCost: '2.00' },
+            size: { name: 'Small', extraCost: '0.00' },
             sodaFlavour: 'Cola',
         },
 
@@ -61,7 +61,7 @@ const data = [
         price: '15.99',
         additionals: {
             toppings: undefined,
-            size: { name: 'Small', extraCost: '2.00' },
+            size: { name: 'Small', extraCost: '0.00' },
             sodaFlavour: 'Cola',
         },
 
@@ -123,7 +123,7 @@ const data = [
         description: 'Crunchy unique fries.',
         price: '3.49',
         additionals: {
-            size: { name: 'Small', extraCost: '2.00' },
+            size: { name: 'Small', extraCost: '0.00' },
         },
     },
     {
