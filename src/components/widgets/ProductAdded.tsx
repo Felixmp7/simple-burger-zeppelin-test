@@ -126,7 +126,7 @@ const ProductAdded: FC<IProduct> = (props) => {
                         <p className="description">{description}</p>
                     </div>
                     <div className="container-actions">
-                        <div className="bubble"><Price price={totalProductPrice} /></div>
+                        <div className="bubble"><Price dollarColor="#00000055" price={totalProductPrice} /></div>
                         <div className="container-cart-button">
                             <CartButton remove handleClick={removeOfOrder} />
                         </div>

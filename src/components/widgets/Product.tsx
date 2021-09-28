@@ -133,7 +133,7 @@ const Product: FC<IProduct> = (props) => {
                 <p className="name">{name}</p>
                 <p className="description">{description}</p>
                 <div className="container-actions">
-                    <div className="bubble"><Price price={price} /></div>
+                    <div className="bubble"><Price dollarColor="#00000055" price={price} /></div>
                     <div className="container-cart-button">
                         <CartButton
                             handleClick={() => setAddNewProduct(true)}
