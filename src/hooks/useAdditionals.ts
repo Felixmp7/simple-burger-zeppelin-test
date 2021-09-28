@@ -2,25 +2,24 @@ import { Dispatch, SetStateAction, useState } from 'react';
 import { CurrentAdditionalProps, SizeProps } from 'types';
 
 type ShoppingProps = {
-    totalProductPrice: string;
-    toppingsAdded: Array<string>;
-    sizeSelected: SizeProps;
-    sodaFlavourSelected: string;
+    toppingsAdded: Array<string> | [];
+    sizeSelected: SizeProps | undefined;
+    sodaFlavourSelected: string | undefined;
+    getTotalPrice: () => string;
     handleTopping: (topping: string) => void;
     handleExtraCost: ({ extraCost }: SizeProps) => void;
-    handleSodaFlavour: Dispatch<SetStateAction<string>>;
+    handleSodaFlavour: Dispatch<SetStateAction<string>> | any;
 };
 
 const useAdditionals = ({
-    defaultPrice, toppings, size, sodaFlavour,
+    price, toppings, size, sodaFlavour,
 }: CurrentAdditionalProps): ShoppingProps => {
-    const [totalProductPrice, setTotalProductPrice] = useState<string>(defaultPrice || '0.00');
-    const [toppingsAdded, setToppingsAdded] = useState<Array<string>>(toppings || []);
-    const [sizeSelected, setSizeSelected] = useState<SizeProps>(size || { name: 'Small', extraCost: '0.00' });
-    const [sodaFlavourSelected, setSodaFlavourSelected] = useState<string>(sodaFlavour || 'Cola');
+    const [toppingsAdded, setToppingsAdded] = useState(toppings || []);
+    const [sizeSelected, setSizeSelected] = useState(size);
+    const [sodaFlavourSelected, setSodaFlavourSelected] = useState(sodaFlavour);
 
     const handleTopping = (topping: string): void => {
-        let newToppingsList;
+        let newToppingsList = [];
         const alreadySelected = toppingsAdded.some((item) => item === topping);
 
         if (alreadySelected) {
@@ -32,24 +31,18 @@ const useAdditionals = ({
     };
 
     const handleExtraCost = (additional: SizeProps) => {
-        let result: string;
-        const { extraCost } = additional;
-        if (extraCost) {
-            const extraCostNumber = parseFloat(extraCost);
-            const totalPriceNumber = parseFloat(totalProductPrice);
-            result = (totalPriceNumber + extraCostNumber).toFixed(2);
-        } else {
-            result = defaultPrice;
+        if (sizeSelected?.name !== additional.name) {
+            setSizeSelected(additional);
         }
-        setTotalProductPrice(result);
-        setSizeSelected(additional);
     };
 
+    const getTotalPrice = () => (parseFloat(price) + parseFloat(sizeSelected?.extraCost || '0.00')).toFixed(2);
+
     return {
-        totalProductPrice,
         toppingsAdded,
         sizeSelected,
         sodaFlavourSelected,
+        getTotalPrice,
         handleTopping,
         handleExtraCost,
         handleSodaFlavour: setSodaFlavourSelected,
