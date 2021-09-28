@@ -8,7 +8,7 @@ const MainRouter = (): JSX.Element => (
     <Router>
         <Switch>
             <Route exact path="/"><App /></Route>
-            <Route exact path="/order-success"><ScreenMessage message="Ordern Finished" /></Route>
+            <Route exact path="/order-finished"><ScreenMessage message="Order Finished!" /></Route>
             <Redirect from="*" to="/" />
         </Switch>
     </Router>

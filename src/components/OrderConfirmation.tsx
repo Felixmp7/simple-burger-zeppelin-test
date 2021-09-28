@@ -1,3 +1,4 @@
+import { useHistory } from 'react-router-dom';
 import useShopList from 'hooks/useShopList';
 import styled from 'styled-components';
 import carIcon from 'assets/icons/car-icon.svg';
@@ -61,6 +62,7 @@ type Props = {
 
 const ConfirmShoppingList = ({ closeModal }: Props): JSX.Element => {
     const { shopList, getTotalPrice } = useShopList();
+    const history = useHistory();
 
     return (
         <Container>
@@ -76,7 +78,7 @@ const ConfirmShoppingList = ({ closeModal }: Props): JSX.Element => {
                     text="Finalize order"
                     price={getTotalPrice()}
                     icon={carIcon}
-                    onClick={() => console.log(shopList)}
+                    onClick={() => history.push('/order-finished')}
                 />
             </div>
         </Container>
