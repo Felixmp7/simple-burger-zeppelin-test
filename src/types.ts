@@ -1,15 +1,15 @@
 export type UpdateToppingsProps = {
-    productOrderId: string;
+    productOrderId: string | undefined;
     toppings: string[];
 };
 
 export type UpdateFlavourProps = {
-    productOrderId: string;
+    productOrderId: string | undefined;
     newFlavour: string;
 };
 
 export type UpdateSizeProps = {
-    productOrderId: string;
+    productOrderId: string | undefined;
     productSize: SizeProps;
 };
 
