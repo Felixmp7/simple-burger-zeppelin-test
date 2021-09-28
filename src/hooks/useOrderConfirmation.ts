@@ -2,7 +2,7 @@ import { SizeProps } from 'types';
 import useAdditionals from './useAdditionals';
 import useShopList from './useShopList';
 
-const useProductInCart = (product: any) => {
+const useOrderConfirmation = (product: any) => {
     const { additionals, productOrderId, price } = product;
     const {
         handleAddOrRemove, updateProductSize, updateSodaFlavour, updateToppings,
@@ -45,4 +45,4 @@ const useProductInCart = (product: any) => {
     };
 };
 
-export default useProductInCart;
+export default useOrderConfirmation;

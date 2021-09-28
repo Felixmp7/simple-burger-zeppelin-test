@@ -7,7 +7,7 @@ import useDisableBodyScroll from 'hooks/useDisableBodyScroll';
 import ShoppingBar from './widgets/ShoppingBar';
 import { breakPoints, colors } from '../constants';
 import ScreenModal from './widgets/ScreenModal';
-import ConfirmShoppingList from './ConfirmShoppingList';
+import OrderConfirmation from './OrderConfirmation';
 
 const Container = styled.div`
     position: relative;
@@ -77,8 +77,8 @@ const Logo = styled.img`
 `;
 
 const Banner = (): JSX.Element => {
-    const [showShoppingList, setShowShoppingList] = useState(false);
-    useDisableBodyScroll(showShoppingList);
+    const [isShowOrder, setIsShowOrder] = useState(false);
+    useDisableBodyScroll(isShowOrder);
     const { getTotalPrice } = useShopList();
     const totalPrice = getTotalPrice();
 
@@ -90,12 +90,12 @@ const Banner = (): JSX.Element => {
                     text="View order"
                     backgroundColor={colors.pink}
                     price={totalPrice}
-                    onClick={() => setShowShoppingList(true)}
+                    onClick={() => setIsShowOrder(true)}
                 />
             </div>
-            {showShoppingList && (
+            {isShowOrder && (
                 <ScreenModal>
-                    <ConfirmShoppingList closeModal={() => setShowShoppingList(false)} />
+                    <OrderConfirmation closeModal={() => setIsShowOrder(false)} />
                 </ScreenModal>
             )}
         </Container>

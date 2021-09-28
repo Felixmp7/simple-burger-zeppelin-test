@@ -2,7 +2,7 @@ import { FC, useState } from 'react';
 import styled from 'styled-components';
 import { IProduct, IProductStyle } from 'types';
 import useDisableBodyScroll from 'hooks/useDisableBodyScroll';
-import ConfirmProduct from '../ConfirmProduct';
+import AddNewProduct from '../AddNewProduct';
 import { breakPoints } from '../../constants';
 import ScreenModal from './ScreenModal';
 import Price from './Price';
@@ -122,7 +122,10 @@ const Product: FC<IProduct> = (props) => {
         <Container>
             {isConfirmProduct && (
                 <ScreenModal>
-                    <ConfirmProduct {...props} closeModal={() => setIsConfirmProduct(false)} />
+                    <AddNewProduct
+                        {...props}
+                        closeModal={() => setIsConfirmProduct(false)}
+                    />
                 </ScreenModal>
             )}
             <Image image={image} />

@@ -2,7 +2,7 @@ import { FC } from 'react';
 import styled from 'styled-components';
 import { IProduct, IProductStyle } from 'types';
 import AdditionalTopics from 'components/AdditionalTopics';
-import useProductInCart from 'hooks/useProductInCart';
+import useOrderConfirmation from 'hooks/useOrderConfirmation';
 import { breakPoints } from '../../constants';
 import Price from './Price';
 import CartButton from './CartButton';
@@ -110,7 +110,7 @@ const ProductAdded: FC<IProduct> = (props) => {
         updateSize,
         updateSoda,
         updateToppingsAdded,
-    } = useProductInCart(props);
+    } = useOrderConfirmation(props);
 
     const {
         image, name, description, productSlug,
