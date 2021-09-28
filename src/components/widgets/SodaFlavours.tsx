@@ -1,4 +1,3 @@
-import { Dispatch, SetStateAction } from 'react';
 import circleChecked from 'assets/icons/circle-checked.svg';
 import circle from 'assets/icons/circle.svg';
 import styled from 'styled-components';
@@ -15,6 +14,10 @@ const Title = styled.h4`
     padding-bottom: 8px;
     margin-bottom: 18.5px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+
+    @media screen and (max-width: ${breakPoints.mobileXl}) {
+       font-size: 13px;
+    }
 `;
 
 const Container = styled.div`
@@ -33,26 +36,32 @@ const StyledButton = styled(Button) <{ onClick?: (topping: string) => void }>`
 `;
 
 type Props = {
-    sodaFlavour: string;
-    setSodaFlavour: Dispatch<SetStateAction<string>>;
+    sodaFlavour: string| undefined;
+    setSodaFlavour: (newFlavour: string) => void;
 };
 
-const SodaFlavours = ({ setSodaFlavour, sodaFlavour }: Props): JSX.Element => (
-    <>
-        <Title>Soda Flavours</Title>
-        <Container>
-            {sodaFlavoursList.map(({ name }) => {
-                const isChecked = sodaFlavour === name;
-                const icon = isChecked ? circleChecked : circle;
+const SodaFlavours = ({ setSodaFlavour, sodaFlavour }: Props): JSX.Element | null => {
+    if (!sodaFlavour) {
+        return null;
+    }
 
-                return (
-                    <StyledButton key={name} onClick={() => setSodaFlavour(name)}>
-                        <CheckBox icon={icon} label={name} />
-                    </StyledButton>
-                );
-            })}
-        </Container>
-    </>
-);
+    return (
+        <>
+            <Title>Soda flavours</Title>
+            <Container>
+                {sodaFlavoursList.map(({ name }) => {
+                    const isChecked = sodaFlavour === name;
+                    const icon = isChecked ? circleChecked : circle;
+
+                    return (
+                        <StyledButton key={name} onClick={() => setSodaFlavour(name)}>
+                            <CheckBox icon={icon} label={name} />
+                        </StyledButton>
+                    );
+                })}
+            </Container>
+        </>
+    );
+};
 
 export default SodaFlavours;

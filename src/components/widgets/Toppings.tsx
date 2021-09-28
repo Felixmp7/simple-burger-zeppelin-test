@@ -22,6 +22,10 @@ const Title = styled.h4`
     padding-bottom: 8px;
     margin-bottom: 18.5px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+
+    @media screen and (max-width: ${breakPoints.mobileXl}) {
+       font-size: 13px;
+    }
 `;
 
 const StyledButton = styled(Button)<{ onClick?: (topping: string) => void }>`
@@ -31,26 +35,32 @@ const StyledButton = styled(Button)<{ onClick?: (topping: string) => void }>`
 `;
 
 type Props = {
-    toppings: Array<string>;
+    toppings: Array<string> | undefined;
     setToppings: (topping: string) => void;
 };
 
-const Toppings = ({ toppings, setToppings }: Props): JSX.Element => (
-    <>
-        <Title>Toppings</Title>
-        <Container>
-            {toppingsList.map(({ name }) => {
-                const isChecked = toppings.some((item) => item === name);
-                const icon = isChecked ? squareChecked : square;
+const Toppings = ({ toppings, setToppings }: Props): JSX.Element | null => {
+    if (!toppings) {
+        return null;
+    }
 
-                return (
-                    <StyledButton key={name} onClick={() => setToppings(name)}>
-                        <CheckBox icon={icon} label={name} />
-                    </StyledButton>
-                );
-            })}
-        </Container>
-    </>
-);
+    return (
+        <>
+            <Title>Toppings</Title>
+            <Container>
+                {toppingsList.map(({ name }) => {
+                    const isChecked = toppings.some((item) => item === name);
+                    const icon = isChecked ? squareChecked : square;
+
+                    return (
+                        <StyledButton key={name} onClick={() => setToppings(name)}>
+                            <CheckBox icon={icon} label={name} />
+                        </StyledButton>
+                    );
+                })}
+            </Container>
+        </>
+    );
+};
 
 export default Toppings;
