@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 import { IProductStyle, IProductModalProps } from 'types';
 import carIcon from 'assets/icons/car-icon.svg';
-import useAdditionals from 'hooks/useAdditionals';
-import useShopList from 'hooks/useShopList';
+import useOrderProduct from 'hooks/useOrderProduct';
 import AdditionalTopics from './AdditionalTopics';
 import ShoppingBar from './widgets/ShoppingBar';
 import CloseModalButton from './widgets/CloseModalButton';
@@ -76,32 +75,20 @@ const Image = styled.div<IProductStyle>`
 
 const ConfirmProduct = (props: IProductModalProps) : JSX.Element => {
     const {
-        closeModal, image, name, description, productSlug, price, additionals, ...rest
-    } = props;
-    const { handleAddOrRemove } = useShopList();
-    const {
-        getTotalPrice, toppingsAdded, sizeSelected, sodaFlavourSelected, handleTopping, handleExtraCost, handleSodaFlavour,
-    } = useAdditionals({ ...additionals, price });
+        totalProductPrice,
+        sizeSelected,
+        toppingsAdded,
+        handleSodaFlavour,
+        sodaFlavourSelected,
+        closeModal,
+        handleExtraCost,
+        handleTopping,
+        addToCart,
+    } = useOrderProduct(props);
 
-    const addToCart = () => {
-        const isRemove = false;
-        const newProduct = {
-            ...rest,
-            image,
-            name,
-            description,
-            productSlug,
-            price,
-            productOrderId: Math.random().toString(36).slice(2),
-            additionals: {
-                toppings: toppingsAdded.length ? toppingsAdded : undefined,
-                size: sizeSelected || undefined,
-                sodaFlavour: sodaFlavourSelected || undefined,
-            },
-        };
-        handleAddOrRemove(newProduct, isRemove);
-        closeModal();
-    };
+    const {
+        image, name, description, productSlug,
+    } = props;
 
     return (
         <Container>
@@ -129,7 +116,7 @@ const ConfirmProduct = (props: IProductModalProps) : JSX.Element => {
             <div className="container-add-to-order">
                 <ShoppingBar
                     text="Add to my order"
-                    price={getTotalPrice()}
+                    price={totalProductPrice}
                     icon={carIcon}
                     onClick={addToCart}
                 />
