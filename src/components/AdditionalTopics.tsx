@@ -1,4 +1,3 @@
-import { Dispatch, SetStateAction } from 'react';
 import styled from 'styled-components';
 import { SizeProps } from 'types';
 import { breakPoints } from '../constants';
@@ -33,12 +32,12 @@ const Container = styled.div`
 
 type Props = {
     productSlug: string;
-    size: SizeProps;
-    toppings: string[];
-    sodaFlavour: string;
+    size: SizeProps | undefined;
+    toppings: string[] | undefined;
+    sodaFlavour: string | undefined;
     handleExtraCost: (additional: SizeProps) => void;
     setToppings: (topping: string) => void;
-    setSodaFlavour: Dispatch<SetStateAction<string>>;
+    setSodaFlavour: (newFlavour: string) => void;
 };
 
 const AdditionalTopics = ({
