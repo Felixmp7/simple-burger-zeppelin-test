@@ -2,10 +2,11 @@ import { FC, useState } from 'react';
 import styled from 'styled-components';
 import { IProduct, IProductStyle } from 'types';
 import useDisableBodyScroll from 'hooks/useDisableBodyScroll';
-import ConfirmProduct from './ConfirmProduct';
-import ProductActions from './widgets/ProductActions';
-import { breakPoints } from '../constants';
-import ScreenModal from './widgets/ScreenModal';
+import ConfirmProduct from '../ConfirmProduct';
+import { breakPoints } from '../../constants';
+import ScreenModal from './ScreenModal';
+import Price from './Price';
+import CartButton from './CartButton';
 
 const Container = styled.div`
     position: relative;
@@ -33,24 +34,65 @@ const Container = styled.div`
         color: #6C707B;
     }
 
+    .container-actions {
+        display: flex;
+        justify-content: space-between;
+
+        .bubble {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            padding: 8px 16px;
+            width: 108px;
+            height: 32px;
+            background: #EFF0F2;
+            border-radius: 4px;
+        }
+        .container-cart-button {
+            width: 108px;
+        }
+    }
+
     @media screen and (max-width: ${breakPoints.laptopMd}) {
         width: 216px;
+        .container-actions {
+            .bubble, .container-cart-button {
+                width: 84px;
+            }
+        }
     }
 
     @media screen and (max-width: ${breakPoints.tablet}) {
         .description {
             display: none;
         }
+
+        .container-actions {
+            margin-top: 30px;
+        }
     }
 
     @media screen and (max-width: ${breakPoints.mobileMd}) {
         display: flex;
         width: 288px;
+
         .card {
             width: 160px;
         }
         .name {
             font-size: 13px;
+        }
+
+        .container-actions {
+            flex-direction: column;
+
+            .bubble, .container-cart-button {
+                width: 100%;
+            }
+            .bubble {
+                margin-bottom: 7px;
+            }
         }
     }
 `;
@@ -87,7 +129,14 @@ const Product: FC<IProduct> = (props) => {
             <div className="card">
                 <p className="name">{name}</p>
                 <p className="description">{description}</p>
-                <ProductActions handleClick={() => setIsConfirmProduct(true)} price={price} />
+                <div className="container-actions">
+                    <div className="bubble"><Price price={price} /></div>
+                    <div className="container-cart-button">
+                        <CartButton
+                            handleClick={() => setIsConfirmProduct(true)}
+                        />
+                    </div>
+                </div>
             </div>
         </Container>
     );
