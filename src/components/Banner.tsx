@@ -1,9 +1,13 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 import banner from 'assets/banner.png';
 import logo from 'assets/vectors/complete-logo.svg';
 import useShopList from 'hooks/useShopList';
+import useDisableBodyScroll from 'hooks/useDisableBodyScroll';
 import ShoppingBar from './widgets/ShoppingBar';
 import { breakPoints, colors } from '../constants';
+import ScreenModal from './widgets/ScreenModal';
+import ConfirmShoppingList from './ConfirmShoppingList';
 
 const Container = styled.div`
     position: relative;
@@ -73,6 +77,8 @@ const Logo = styled.img`
 `;
 
 const Banner = (): JSX.Element => {
+    const [showShoppingList, setShowShoppingList] = useState(false);
+    useDisableBodyScroll(showShoppingList);
     const { getTotalPrice } = useShopList();
     const totalPrice = getTotalPrice();
 
@@ -80,8 +86,18 @@ const Banner = (): JSX.Element => {
         <Container>
             <Logo src={logo} alt="Burger Logo" />
             <div className="container-total-price">
-                <ShoppingBar text="View order" backgroundColor={colors.pink} price={totalPrice} />
+                <ShoppingBar
+                    text="View order"
+                    backgroundColor={colors.pink}
+                    price={totalPrice}
+                    onClick={() => setShowShoppingList(true)}
+                />
             </div>
+            {showShoppingList && (
+                <ScreenModal>
+                    <ConfirmShoppingList closeModal={() => setShowShoppingList(false)} />
+                </ScreenModal>
+            )}
         </Container>
     );
 };
