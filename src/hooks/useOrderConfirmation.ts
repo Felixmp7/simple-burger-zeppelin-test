@@ -1,8 +1,19 @@
-import { SizeProps } from 'types';
+import { IProduct, SizeProps } from 'types';
 import useAdditionals from './useAdditionals';
 import useShopList from './useShopList';
 
-const useOrderConfirmation = (product: any) => {
+type OrderProps = {
+    totalProductPrice: string;
+    toppingsAdded: string[];
+    sizeSelected: SizeProps | undefined;
+    sodaFlavourSelected: string | undefined;
+    removeOfOrder: () => void;
+    updateSize: (newSize: SizeProps) => void;
+    updateSoda: (newFlavour: string) => void;
+    updateToppingsAdded: (topping: string) => void;
+}
+
+const useOrderConfirmation = (product: IProduct): OrderProps => {
     const { additionals, productOrderId, price } = product;
     const {
         handleAddOrRemove, updateProductSize, updateSodaFlavour, updateToppings,
@@ -13,7 +24,7 @@ const useOrderConfirmation = (product: any) => {
         handleTopping, handleExtraCost, handleSodaFlavour,
     } = useAdditionals({ ...additionals, price });
 
-    const removeOfCart = () => {
+    const removeOfOrder = () => {
         const isRemove = true;
         handleAddOrRemove(product, isRemove);
     };
@@ -38,7 +49,7 @@ const useOrderConfirmation = (product: any) => {
         toppingsAdded,
         sizeSelected,
         sodaFlavourSelected,
-        removeOfCart,
+        removeOfOrder,
         updateSize,
         updateSoda,
         updateToppingsAdded,
