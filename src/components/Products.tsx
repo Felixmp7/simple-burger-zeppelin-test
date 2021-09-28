@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { IProduct } from 'types';
 import Title from './Title';
-import Product from './Product';
+import Product from './widgets/Product';
 import { breakPoints } from '../constants';
 
 const ContainerContent = styled.div`
