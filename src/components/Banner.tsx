@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import banner from 'assets/banner.png';
+import banner from 'assets/backgrounds/banner.png';
 import logo from 'assets/vectors/complete-logo.svg';
 import useShopList from 'hooks/useShopList';
 import useDisableBodyScroll from 'hooks/useDisableBodyScroll';
