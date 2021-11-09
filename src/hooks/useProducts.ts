@@ -144,7 +144,8 @@ const data = [
 
 const useProducts = (): Products => {
     const [products, setProducts] = useState<Array<IProduct>>([]);
-    const getProduct = (id: number) => data.find((product) => product.id === id);
+
+    const getProduct = useCallback((id: number) => products.find((product) => product.id === id), [products]);
 
     const handleLoadProducts = useCallback(async () => {
         await API.products.getProducts();
