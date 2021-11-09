@@ -5,7 +5,8 @@ import doubleBurgerCheese from 'assets/products/double-burger-cheese.png';
 import fries from 'assets/products/fries.png';
 import soda from 'assets/products/soda.png';
 import { IProduct, Products } from 'types';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
+import API from 'services/api';
 
 const data = [
     {
@@ -145,11 +146,14 @@ const useProducts = (): Products => {
     const [products, setProducts] = useState<Array<IProduct>>([]);
     const getProduct = (id: number) => data.find((product) => product.id === id);
 
-    useEffect(() => {
-        setTimeout(() => {
-            setProducts(data);
-        }, 3000);
+    const handleLoadProducts = useCallback(async () => {
+        await API.products.getProducts();
+        setProducts(data);
     }, []);
+
+    useEffect(() => {
+        handleLoadProducts();
+    }, [handleLoadProducts]);
 
     return {
         products,
