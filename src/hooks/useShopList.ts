@@ -31,8 +31,8 @@ const useShopList = (): IShopListHookProps => {
     };
 
     const getTotalPrice = () => {
-        const total = shopList.reduce((totalPrice, { price, additionals }) => {
-            const accum = parseFloat(price) + parseFloat(additionals.size?.extraCost || '0.00');
+        const total = shopList.reduce((totalPrice, { price, additionals: { size } }) => {
+            const accum = parseFloat(price) + parseFloat(size?.extraCost || '0.00');
 
             return totalPrice + accum;
         }, 0);
