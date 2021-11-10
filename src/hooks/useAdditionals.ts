@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Dispatch, SetStateAction, useState } from 'react';
-import { CurrentAdditionalProps, SizeProps } from 'types';
+import { IAdditionals, SizeProps } from 'types';
 
 type ShoppingProps = {
     toppingsAdded: Array<string> | [];
@@ -12,9 +12,13 @@ type ShoppingProps = {
     handleSodaFlavour: Dispatch<SetStateAction<string>> | any;
 };
 
+interface IAdditionalProps extends IAdditionals {
+    price: string;
+}
+
 const useAdditionals = ({
     price, toppings, size, sodaFlavour,
-}: CurrentAdditionalProps): ShoppingProps => {
+}: IAdditionalProps): ShoppingProps => {
     const [toppingsAdded, setToppingsAdded] = useState(toppings || []);
     const [sizeSelected, setSizeSelected] = useState(size);
     const [sodaFlavourSelected, setSodaFlavourSelected] = useState(sodaFlavour);

@@ -1,4 +1,4 @@
-import { IProductModalProps } from 'types';
+import { IProduct } from 'types';
 import carIcon from 'assets/icons/car-icon.svg';
 import useOrderProduct from 'hooks/useOrderProduct';
 import { Container, Image } from 'components/styled/AddNewProduct';
@@ -6,21 +6,24 @@ import AdditionalTopics from './AdditionalTopics';
 import ShoppingBar from './widgets/ShoppingBar';
 import CloseModalButton from './widgets/CloseModalButton';
 
-const ConfirmProduct = (props: IProductModalProps) : JSX.Element => {
+interface IProductProps extends IProduct {
+    closeModal: () => void;
+}
+
+const ConfirmProduct = (props: IProductProps) : JSX.Element => {
     const {
         totalProductPrice,
         sizeSelected,
         toppingsAdded,
         sodaFlavourSelected,
         handleSodaFlavour,
-        closeModal,
         handleExtraCost,
         handleTopping,
         addToCart,
     } = useOrderProduct(props);
 
     const {
-        image, name, description, productSlug,
+        image, name, description, productSlug, closeModal,
     } = props;
 
     return (
