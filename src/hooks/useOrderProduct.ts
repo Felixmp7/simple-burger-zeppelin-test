@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Dispatch, SetStateAction } from 'react';
 import { IProduct, SizeProps } from 'types';
 import produce from 'immer';
@@ -6,15 +5,15 @@ import useAdditionals from './useAdditionals';
 import useShopList from './useShopList';
 
 type OrderProductProps = {
-    totalProductPrice: string,
-    sizeSelected: SizeProps | undefined,
-    toppingsAdded: string[],
-    handleSodaFlavour: Dispatch<SetStateAction<string>> | any,
-    sodaFlavourSelected: string | undefined,
+    totalProductPrice: string;
+    sizeSelected: SizeProps | undefined;
+    toppingsAdded: string[];
+    handleSodaFlavour: Dispatch<SetStateAction<string>>;
+    sodaFlavourSelected: string | undefined;
     handleTopping: (topping: string) => void;
     handleExtraCost: ({ extraCost }: SizeProps) => void;
-    addToCart: () => void,
-    closeModal: () => void,
+    addToCart: () => void;
+    closeModal: () => void;
 }
 
 interface IOrderProduct extends IProduct {
