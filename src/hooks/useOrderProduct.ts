@@ -8,8 +8,8 @@ interface IOrderHookProps {
     totalProductPrice: string;
     sizeSelected: SizeProps | undefined;
     toppingsAdded: string[];
-    handleSodaFlavour: Dispatch<SetStateAction<string>>;
     sodaFlavourSelected: string | undefined;
+    handleSodaFlavour: Dispatch<SetStateAction<string>>;
     handleTopping: (topping: string) => void;
     handleExtraCost: ({ extraCost }: SizeProps) => void;
     addToCart: () => void;
