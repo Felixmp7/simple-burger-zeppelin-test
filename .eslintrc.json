@@ -29,6 +29,9 @@
         "plugin:import/typescript"
     ],
     "rules": {
+        "no-param-reassign": ["error", {
+            "props": true, "ignorePropertyModificationsFor": ["draft"]
+        }],
         "react/react-in-jsx-scope": "off",
         "react/jsx-props-no-spreading": "off",
         "react/jsx-filename-extension": [
