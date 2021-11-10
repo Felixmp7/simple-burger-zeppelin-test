@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Dispatch, SetStateAction } from 'react';
 import { IProduct, SizeProps } from 'types';
+import produce from 'immer';
 import useAdditionals from './useAdditionals';
 import useShopList from './useShopList';
 
@@ -21,26 +22,23 @@ interface IOrderProduct extends IProduct {
 }
 
 const useOrderProduct = (productProps: IOrderProduct): OrderProductProps => {
+    const { closeModal, price, additionals } = productProps;
     const { handleAddOrRemove } = useShopList();
-    const {
-        closeModal, price, additionals, ...rest
-    } = productProps;
     const {
         getTotalPrice, toppingsAdded, sizeSelected, sodaFlavourSelected, handleTopping, handleExtraCost, handleSodaFlavour,
     } = useAdditionals({ ...additionals, price });
 
     const addToCart = () => {
         const isRemove = false;
-        const newProduct = {
-            ...rest,
-            price,
-            productOrderId: Math.random().toString(36).slice(2),
-            additionals: {
+        const newProduct = produce(productProps, (draft) => {
+            draft.price = price;
+            draft.productOrderId = Math.random().toString(36).slice(2);
+            draft.additionals = {
                 toppings: toppingsAdded.length ? toppingsAdded : undefined,
                 size: sizeSelected || undefined,
                 sodaFlavour: sodaFlavourSelected || undefined,
-            },
-        };
+            };
+        });
         handleAddOrRemove(newProduct, isRemove);
         closeModal();
     };
