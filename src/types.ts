@@ -1,41 +1,29 @@
 export type UpdateToppingsProps = {
-    productOrderId: string | undefined;
+    productOrderId?: string;
     toppings: string[];
 };
 
 export type UpdateFlavourProps = {
-    productOrderId: string | undefined;
+    productOrderId?: string;
     newFlavour: string;
 };
 
 export type UpdateSizeProps = {
-    productOrderId: string | undefined;
+    productOrderId?: string;
     productSize: SizeProps;
 };
 
-export type CurrentAdditionalProps = {
-    price: string;
-    toppings?: Array<string>;
-    size?: SizeProps;
-    sodaFlavour?: string;
-}
 export type SizeProps = {
     name: string;
     extraCost: string;
 }
 
-export type AdditionalTopicsProps = {
-    toppings?: Array<string> | undefined;
-    sodaFlavour?: string | undefined;
-    size?: SizeProps | undefined;
-};
-
-export interface IProductModalProps extends IProduct {
-    closeModal: () => void;
+export interface IAdditionals {
+    toppings?: Array<string>;
+    sodaFlavour?: string;
+    size?: SizeProps;
 }
-
 export interface IProduct {
-    productOrderId?: string | undefined;
     id: number;
     image: string;
     name: string;
@@ -43,7 +31,8 @@ export interface IProduct {
     productType: string;
     productSlug: string;
     price: string;
-    additionals?: AdditionalTopicsProps | undefined;
+    productOrderId?: string;
+    additionals: IAdditionals;
 }
 
 export type Products = {
