@@ -4,7 +4,7 @@ import produce from 'immer';
 import useAdditionals from './useAdditionals';
 import useShopList from './useShopList';
 
-type OrderProductProps = {
+interface IOrderHookProps {
     totalProductPrice: string;
     sizeSelected: SizeProps | undefined;
     toppingsAdded: string[];
@@ -13,14 +13,13 @@ type OrderProductProps = {
     handleTopping: (topping: string) => void;
     handleExtraCost: ({ extraCost }: SizeProps) => void;
     addToCart: () => void;
-    closeModal: () => void;
 }
 
 interface IOrderProduct extends IProduct {
     closeModal: () => void;
 }
 
-const useOrderProduct = (productProps: IOrderProduct): OrderProductProps => {
+const useOrderProduct = (productProps: IOrderProduct): IOrderHookProps => {
     const { closeModal, price, additionals } = productProps;
     const { handleAddOrRemove } = useShopList();
     const {
@@ -51,7 +50,6 @@ const useOrderProduct = (productProps: IOrderProduct): OrderProductProps => {
         handleExtraCost,
         handleTopping,
         addToCart,
-        closeModal,
     };
 };
 
