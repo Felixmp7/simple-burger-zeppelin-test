@@ -46,6 +46,7 @@
             }
         ],
         "indent": "off",
+        "@typescript-eslint/no-explicit-any": 0,
         "@typescript-eslint/indent": [
             "error",
             4,
