@@ -1,12 +1,11 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { SetterOrUpdater, useRecoilState } from 'recoil';
+import produce from 'immer';
 import shopListAtom from 'recoilState';
 import {
     IProduct, UpdateFlavourProps, UpdateSizeProps, UpdateToppingsProps,
 } from 'types';
-import produce from 'immer';
 
-type ShopListProps = {
+interface IShopListHookProps {
     shopList: Array<IProduct>;
     getTotalPrice: () => string;
     setShopList: SetterOrUpdater<Array<IProduct>>;
@@ -14,9 +13,9 @@ type ShopListProps = {
     updateProductSize: ({ productOrderId, productSize }: UpdateSizeProps) => void;
     updateSodaFlavour: ({ productOrderId, newFlavour }: UpdateFlavourProps) => void;
     updateToppings: ({ productOrderId, toppings }: UpdateToppingsProps) => void;
-};
+}
 
-const useShopList = (): ShopListProps => {
+const useShopList = (): IShopListHookProps => {
     const [shopList, setShopList] = useRecoilState(shopListAtom);
 
     const handleAddOrRemove = (product: IProduct, isRemove: boolean): void => {
@@ -29,8 +28,9 @@ const useShopList = (): ShopListProps => {
     };
 
     const getTotalPrice = () => {
-        const total = shopList.reduce((totalPrice, item) => {
-            const accum = parseFloat(item.price) + parseFloat(item.additionals?.size?.extraCost || '0.00');
+        const total = shopList.reduce((totalPrice, { price, additionals }) => {
+            const accum = parseFloat(price) + parseFloat(additionals.size?.extraCost || '0.00');
+
             return totalPrice + accum;
         }, 0);
         return total.toFixed(2);
@@ -40,7 +40,7 @@ const useShopList = (): ShopListProps => {
         const shopListUpdated = produce(shopList, (draft) => {
             const index = draft.findIndex((item) => item.productOrderId === productOrderId);
             if (index !== -1) {
-                draft[index].additionals!.size = productSize;
+                draft[index].additionals.size = productSize;
             }
         });
 
@@ -51,7 +51,7 @@ const useShopList = (): ShopListProps => {
         const shopListUpdated = produce(shopList, (draft) => {
             const index = draft.findIndex((item) => item.productOrderId === productOrderId);
             if (index !== -1) {
-                draft[index].additionals!.sodaFlavour = newFlavour;
+                draft[index].additionals.sodaFlavour = newFlavour;
             }
         });
 
@@ -62,7 +62,7 @@ const useShopList = (): ShopListProps => {
         const shopListUpdated = produce(shopList, (draft) => {
             const index = draft.findIndex((item) => item.productOrderId === productOrderId);
             if (index !== -1) {
-                draft[index].additionals!.toppings = toppings;
+                draft[index].additionals.toppings = toppings;
             }
         });
 
