@@ -9,7 +9,7 @@ interface IShopListHookProps {
     shopList: Array<IProduct>;
     getTotalPrice: () => string;
     setShopList: SetterOrUpdater<Array<IProduct>>;
-    handleAddOrRemove: (product: IProduct, isRemove: boolean) => void;
+    handleAddOrRemove: (product: IProduct) => void;
     updateProductSize: ({ productOrderId, productSize }: UpdateSizeProps) => void;
     updateSodaFlavour: ({ productOrderId, newFlavour }: UpdateFlavourProps) => void;
     updateToppings: ({ productOrderId, toppings }: UpdateToppingsProps) => void;
@@ -18,11 +18,14 @@ interface IShopListHookProps {
 const useShopList = (): IShopListHookProps => {
     const [shopList, setShopList] = useRecoilState(shopListAtom);
 
-    const handleAddOrRemove = (product: IProduct, isRemove: boolean): void => {
+    const handleAddOrRemove = (product: IProduct): void => {
         const shopListUpdated = produce(shopList, (draft) => {
-            if (isRemove) {
-                draft.filter(({ productOrderId }) => productOrderId !== product.productOrderId);
-            } else draft.push(product);
+            const indexOfOrder = draft.findIndex(({ productOrderId }) => productOrderId === product.productOrderId);
+            if (indexOfOrder === -1) {
+                draft.push(product);
+            } else {
+                draft.splice(indexOfOrder, 1);
+            }
         });
         setShopList(shopListUpdated);
     };

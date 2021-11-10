@@ -27,7 +27,6 @@ const useOrderProduct = (productProps: IOrderProduct): IOrderHookProps => {
     } = useAdditionals({ ...additionals, price });
 
     const addToCart = () => {
-        const isRemove = false;
         const newProduct = produce(productProps, (draft) => {
             draft.price = price;
             draft.productOrderId = Math.random().toString(36).slice(2);
@@ -37,7 +36,7 @@ const useOrderProduct = (productProps: IOrderProduct): IOrderHookProps => {
                 sodaFlavour: sodaFlavourSelected || undefined,
             };
         });
-        handleAddOrRemove(newProduct, isRemove);
+        handleAddOrRemove(newProduct);
         closeModal();
     };
 

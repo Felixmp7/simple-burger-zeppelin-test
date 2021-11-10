@@ -24,10 +24,7 @@ const useOrderConfirmation = (product: IProduct): OrderProps => {
         handleTopping, handleExtraCost, handleSodaFlavour,
     } = useAdditionals({ ...additionals, price });
 
-    const removeOfOrder = () => {
-        const isRemove = true;
-        handleAddOrRemove(product, isRemove);
-    };
+    const removeOfOrder = () => handleAddOrRemove(product);
 
     const updateSize = (newSize: SizeProps) => {
         handleExtraCost(newSize);
