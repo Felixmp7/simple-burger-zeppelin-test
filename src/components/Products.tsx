@@ -46,15 +46,11 @@ type Props = {
     productTitle: string;
 }
 
-const Products = ({
-    products, descriptionTitle, productTitle,
-}: Props): JSX.Element => (
+const Products = ({ products, descriptionTitle, productTitle }: Props): JSX.Element => (
     <ContainerContent>
         <Title descriptionTitle={descriptionTitle} productTitle={productTitle} />
         <div className="products-container">
-            {products.map((product) => (
-                <Product key={product.id} {...product} />
-            ))}
+            {products.map((product) => <Product key={product.id} {...product} />)}
         </div>
     </ContainerContent>
 );
