@@ -11,16 +11,18 @@ const StyledButton = styled.button`
 type Props = {
     children: ReactChild;
     rest?: unknown;
+    onClick?: (params?: any) => void | null;
 }
 
-const Button = ({ children, ...rest }: Props) : JSX.Element => (
-    <StyledButton {...rest} type="button">
+const Button = ({ children, onClick, ...rest }: Props) : JSX.Element => (
+    <StyledButton {...rest} onClick={onClick} type="button">
         {children}
     </StyledButton>
 );
 
 Button.defaultProps = {
     rest: {},
+    onClick: null,
 };
 
 export default Button;
