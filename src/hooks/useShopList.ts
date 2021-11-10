@@ -1,8 +1,10 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { SetterOrUpdater, useRecoilState } from 'recoil';
 import shopListAtom from 'recoilState';
 import {
     IProduct, UpdateFlavourProps, UpdateSizeProps, UpdateToppingsProps,
 } from 'types';
+import produce from 'immer';
 
 type ShopListProps = {
     shopList: Array<IProduct>;
@@ -18,14 +20,12 @@ const useShopList = (): ShopListProps => {
     const [shopList, setShopList] = useRecoilState(shopListAtom);
 
     const handleAddOrRemove = (product: IProduct, isRemove: boolean): void => {
-        const result: Array<IProduct> = [...shopList];
-        if (isRemove) {
-            const orderIndex = shopList.findIndex(({ productOrderId }) => productOrderId === product.productOrderId);
-            result.splice(orderIndex, 1);
-        } else {
-            result.push(product);
-        }
-        setShopList(result);
+        const shopListUpdated = produce(shopList, (draft) => {
+            if (isRemove) {
+                draft.filter(({ productOrderId }) => productOrderId !== product.productOrderId);
+            } else draft.push(product);
+        });
+        setShopList(shopListUpdated);
     };
 
     const getTotalPrice = () => {
@@ -37,51 +37,33 @@ const useShopList = (): ShopListProps => {
     };
 
     const updateProductSize = ({ productOrderId, productSize } : UpdateSizeProps) => {
-        const shopListUpdated = shopList.map((item) => {
-            if (item.productOrderId === productOrderId) {
-                return {
-                    ...item,
-                    additionals: {
-                        ...item.additionals,
-                        size: productSize,
-                    },
-                };
+        const shopListUpdated = produce(shopList, (draft) => {
+            const index = draft.findIndex((item) => item.productOrderId === productOrderId);
+            if (index !== -1) {
+                draft[index].additionals!.size = productSize;
             }
-            return item;
         });
 
         setShopList(shopListUpdated);
     };
 
     const updateSodaFlavour = ({ productOrderId, newFlavour } : UpdateFlavourProps) => {
-        const shopListUpdated = shopList.map((item) => {
-            if (item.productOrderId === productOrderId) {
-                return {
-                    ...item,
-                    additionals: {
-                        ...item.additionals,
-                        sodaFlavour: newFlavour,
-                    },
-                };
+        const shopListUpdated = produce(shopList, (draft) => {
+            const index = draft.findIndex((item) => item.productOrderId === productOrderId);
+            if (index !== -1) {
+                draft[index].additionals!.sodaFlavour = newFlavour;
             }
-            return item;
         });
 
         setShopList(shopListUpdated);
     };
 
     const updateToppings = ({ productOrderId, toppings } : UpdateToppingsProps) => {
-        const shopListUpdated = shopList.map((item) => {
-            if (item.productOrderId === productOrderId) {
-                return {
-                    ...item,
-                    additionals: {
-                        ...item.additionals,
-                        toppings,
-                    },
-                };
+        const shopListUpdated = produce(shopList, (draft) => {
+            const index = draft.findIndex((item) => item.productOrderId === productOrderId);
+            if (index !== -1) {
+                draft[index].additionals!.toppings = toppings;
             }
-            return item;
         });
 
         setShopList(shopListUpdated);
