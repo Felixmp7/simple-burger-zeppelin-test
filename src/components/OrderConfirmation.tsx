@@ -18,7 +18,7 @@ const Container = styled.div`
         position: absolute;
         top: 40px;
         right: -40px;
-    }
+    };
 
     .container-products {
         height: 90%;
@@ -28,32 +28,32 @@ const Container = styled.div`
 
         &::-webkit-scrollbar {
             display: none;
-        }
-    }
+        };
+
+        .empty {
+            font-size: 3rem;
+            text-align: center;
+            color: white;
+        };
+    };
 
     .finish-order {
         padding: 16px;
         background-color: white;
         border-radius: 8px;
-    }
+    };
 
     @media screen and (max-width: ${breakPoints.tablet}) {
         width: 80vw;
-    }
+    };
 
     @media screen and (max-width: ${breakPoints.mobileSm}) {
         width: 288px;
         .close-button {
             right: -10px;
             top: 20px;
-        }
-    }
-`;
-
-const EmptyList = styled.div`
-    font-size: 3rem;
-    text-align: center;
-    color: white;
+        };
+    };
 `;
 
 type Props = {
@@ -71,7 +71,7 @@ const ConfirmShoppingList = ({ closeModal }: Props): JSX.Element => {
                 {shopList.length
                     ? shopList.map((product) => (
                         <ProductAdded key={product.productOrderId} {...product} />
-                    )) : <EmptyList>No products ordered</EmptyList>}
+                    )) : <div className="empty">No products ordered</div>}
             </div>
             <div className="finish-order">
                 <ShoppingBar
