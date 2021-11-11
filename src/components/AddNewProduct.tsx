@@ -1,6 +1,7 @@
 import { IProduct } from 'types';
 import carIcon from 'assets/icons/car-icon.svg';
-import useOrderProduct from 'hooks/useOrderProduct';
+import useAdditionals from 'hooks/useAdditionals';
+import useAddProduct from 'hooks/useAddProduct';
 import { Container, Image } from 'components/styled/AddNewProduct';
 import AdditionalTopics from './AdditionalTopics';
 import ShoppingBar from './widgets/ShoppingBar';
@@ -12,15 +13,18 @@ interface IProductProps extends IProduct {
 
 const ConfirmProduct = (props: IProductProps) : JSX.Element => {
     const {
-        totalProductPrice,
-        sizeSelected,
-        toppingsAdded,
-        sodaFlavourSelected,
         handleSodaFlavour,
-        handleExtraCost,
+        toppingsAdded,
+        sizeSelected,
+        sodaFlavourSelected,
+        getTotalPrice,
         handleTopping,
-        addToCart,
-    } = useOrderProduct(props);
+        handleExtraCost,
+    } = useAdditionals(props);
+
+    const { addToCart } = useAddProduct({
+        ...props, sodaFlavourSelected, sizeSelected, toppingsAdded,
+    });
 
     const {
         image, name, description, productSlug, closeModal,
@@ -52,7 +56,7 @@ const ConfirmProduct = (props: IProductProps) : JSX.Element => {
             <div className="container-add-to-order">
                 <ShoppingBar
                     text="Add to my order"
-                    price={totalProductPrice}
+                    price={getTotalPrice()}
                     icon={carIcon}
                     onClick={addToCart}
                 />

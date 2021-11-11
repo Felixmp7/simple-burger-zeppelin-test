@@ -1,24 +1,23 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Dispatch, SetStateAction, useState } from 'react';
 import { IAdditionals, SizeProps } from 'types';
 
-type ShoppingProps = {
+interface IReturnedProps {
     toppingsAdded: Array<string> | [];
     sizeSelected: SizeProps | undefined;
     sodaFlavourSelected: string | undefined;
+    handleSodaFlavour: Dispatch<SetStateAction<string>> | any;
     getTotalPrice: () => string;
     handleTopping: (topping: string) => void;
     handleExtraCost: ({ extraCost }: SizeProps) => void;
-    handleSodaFlavour: Dispatch<SetStateAction<string>> | any;
-};
+}
 
-interface IAdditionalProps extends IAdditionals {
+interface IProps extends IAdditionals {
     price: string;
 }
 
 const useAdditionals = ({
     price, toppings, size, sodaFlavour,
-}: IAdditionalProps): ShoppingProps => {
+}: IProps): IReturnedProps => {
     const [toppingsAdded, setToppingsAdded] = useState(toppings || []);
     const [sizeSelected, setSizeSelected] = useState(size);
     const [sodaFlavourSelected, setSodaFlavourSelected] = useState(sodaFlavour);
@@ -35,13 +34,16 @@ const useAdditionals = ({
         setToppingsAdded([...newToppingsList]);
     };
 
-    const handleExtraCost = (additional: SizeProps) => {
-        if (sizeSelected?.name !== additional.name) {
-            setSizeSelected(additional);
+    const handleExtraCost = (newSize: SizeProps) => {
+        if (sizeSelected?.name !== newSize.name) {
+            setSizeSelected(newSize);
         }
     };
 
-    const getTotalPrice = () => (parseFloat(price) + parseFloat(sizeSelected?.extraCost || '0.00')).toFixed(2);
+    const getTotalPrice = () => {
+        const extraCost = parseFloat(sizeSelected?.extraCost || '0.00');
+        return (parseFloat(price) + extraCost).toFixed(2);
+    };
 
     return {
         toppingsAdded,

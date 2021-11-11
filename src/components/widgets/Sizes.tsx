@@ -40,38 +40,38 @@ const StyledButton = styled(Button) <{ onClick?: (topping: string) => void }>`
     }
 `;
 
-type Props = {
-    size: SizeProps | undefined;
+interface IProps {
+    size?: SizeProps;
     handleExtraCost: (additional: SizeProps) => void;
-};
+}
 
-const Sizes = ({ size, handleExtraCost }: Props): JSX.Element | null => {
-    if (!size) {
-        return null;
-    }
+const Sizes = ({ size, handleExtraCost }: IProps): JSX.Element => (
+    <>
+        <Title>Sizes</Title>
+        {sizesList.map(({ name, extraCost }) => {
+            const withExtraCost = extraCost !== '0.00';
+            const isChecked = size?.name === name;
+            const icon = isChecked ? circleChecked : circle;
+            const extraCostClass = withExtraCost ? 'with-bracket' : '';
 
-    return (
-        <>
-            <Title>Sizes</Title>
-            {sizesList.map(({ name, extraCost }) => {
-                const withExtraCost = extraCost !== '0.00';
-                const isChecked = size.name === name;
-                const icon = isChecked ? circleChecked : circle;
-                const extraCostClass = withExtraCost ? 'with-bracket' : '';
+            return (
+                <StyledButton key={name} onClick={() => handleExtraCost({ name, extraCost })}>
+                    <>
+                        <CheckBox icon={icon} classes={extraCostClass} label={name} />
+                        {withExtraCost && (
+                            <span className="extra-cost">{`${extraCost})`}</span>
+                        )}
+                    </>
+                </StyledButton>
+            );
+        })}
+    </>
+);
 
-                return (
-                    <StyledButton key={name} onClick={() => handleExtraCost({ name, extraCost })}>
-                        <>
-                            <CheckBox icon={icon} classes={extraCostClass} label={name} />
-                            {withExtraCost && (
-                                <span className="extra-cost">{`${extraCost})`}</span>
-                            )}
-                        </>
-                    </StyledButton>
-                );
-            })}
-        </>
-    );
+Sizes.defaultProps = {
+    size: {
+        name: 'Small', extraCost: '0.00',
+    },
 };
 
 export default Sizes;
