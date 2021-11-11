@@ -56,13 +56,13 @@ const Container = styled.div`
     };
 `;
 
-type Props = {
+interface IProps {
     closeModal: () => void;
-};
+}
 
-const ShoppingCart = ({ closeModal }: Props): JSX.Element => {
-    const { shopList, getTotalPrice } = useShoppingCart();
+const ShoppingCart = ({ closeModal }: IProps): JSX.Element => {
     const history = useHistory();
+    const { shopList, getTotalPrice } = useShoppingCart();
 
     return (
         <Container>
