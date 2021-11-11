@@ -3,8 +3,8 @@ import { IProduct } from 'types';
 import AdditionalTopics from 'components/AdditionalTopics';
 import useOrderConfirmation from 'hooks/useOrderConfirmation';
 import { Container, Image } from 'components/styled/ProductAdded';
-import Price from './Price';
-import CartButton from './CartButton';
+import Price from './widgets/Price';
+import CartButton from './widgets/CartButton';
 
 const ProductAdded: FC<IProduct> = (props) => {
     const {

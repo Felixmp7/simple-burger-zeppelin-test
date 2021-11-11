@@ -2,7 +2,7 @@ import { useHistory } from 'react-router-dom';
 import useShoppingCart from 'hooks/useShoppingCart';
 import styled from 'styled-components';
 import carIcon from 'assets/icons/car-icon.svg';
-import ProductAdded from './widgets/ProductAdded';
+import ProductAdded from './ProductAdded';
 import CloseModalButton from './widgets/CloseModalButton';
 import { breakPoints } from '../constants';
 import ShoppingBar from './widgets/ShoppingBar';
