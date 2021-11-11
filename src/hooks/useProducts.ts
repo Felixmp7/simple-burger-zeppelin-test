@@ -152,9 +152,7 @@ const useProducts = (): Products => {
         setProducts(data);
     }, []);
 
-    useEffect(() => {
-        handleLoadProducts();
-    }, [handleLoadProducts]);
+    useEffect(() => { handleLoadProducts(); }, [handleLoadProducts]);
 
     return {
         products,
