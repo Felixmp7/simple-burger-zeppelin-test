@@ -5,7 +5,7 @@ import {
     IProduct, UpdateFlavourProps, UpdateSizeProps, UpdateToppingsProps,
 } from 'types';
 
-interface IShopListHookProps {
+interface IShoppingCartHookProps {
     shopList: Array<IProduct>;
     getTotalPrice: () => string;
     setShopList: SetterOrUpdater<Array<IProduct>>;
@@ -15,7 +15,15 @@ interface IShopListHookProps {
     updateToppings: ({ productOrderId, toppings }: UpdateToppingsProps) => void;
 }
 
-const useShopList = (): IShopListHookProps => {
+// interface UpdateAdditionalProps {
+//     productOrderId: string;
+//     additional: {
+//         slug: 'toppings' | 'size' | 'sodaFlavour';
+//         value: Array<string> | string | SizeProps;
+//     }
+// }
+
+const useShoppingCart = (): IShoppingCartHookProps => {
     const [shopList, setShopList] = useRecoilState(shopListAtom);
 
     const handleAddOrRemove = (product: IProduct): void => {
@@ -31,10 +39,10 @@ const useShopList = (): IShopListHookProps => {
     };
 
     const getTotalPrice = () => {
-        const total = shopList.reduce((totalPrice, { price, additionals: { size } }) => {
-            const accum = parseFloat(price) + parseFloat(size?.extraCost || '0.00');
+        const total = shopList.reduce((totalAccum, { price, additionals: { size } }) => {
+            const subTotal = parseFloat(price) + parseFloat(size?.extraCost || '0.00');
 
-            return totalPrice + accum;
+            return totalAccum + subTotal;
         }, 0);
         return total.toFixed(2);
     };
@@ -49,6 +57,17 @@ const useShopList = (): IShopListHookProps => {
 
         setShopList(shopListUpdated);
     };
+
+    // const updateAdditional = ({ productOrderId, additional: { slug, value } }: UpdateAdditionalProps) => {
+    //     const shopListUpdated = produce(shopList, (draft) => {
+    //         const index = draft.findIndex((item) => item.productOrderId === productOrderId);
+    //         if (index !== -1) {
+    //             draft[index].additionals[slug] = value;
+    //         }
+    //     });
+
+    //     setShopList(shopListUpdated);
+    // };
 
     const updateSodaFlavour = ({ productOrderId, newFlavour } : UpdateFlavourProps) => {
         const shopListUpdated = produce(shopList, (draft) => {
@@ -83,4 +102,4 @@ const useShopList = (): IShopListHookProps => {
     };
 };
 
-export default useShopList;
+export default useShoppingCart;

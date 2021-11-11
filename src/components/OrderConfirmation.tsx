@@ -1,5 +1,5 @@
 import { useHistory } from 'react-router-dom';
-import useShopList from 'hooks/useShopList';
+import useShoppingCart from 'hooks/useShoppingCart';
 import styled from 'styled-components';
 import carIcon from 'assets/icons/car-icon.svg';
 import ProductAdded from './widgets/ProductAdded';
@@ -61,7 +61,7 @@ type Props = {
 };
 
 const ConfirmShoppingList = ({ closeModal }: Props): JSX.Element => {
-    const { shopList, getTotalPrice } = useShopList();
+    const { shopList, getTotalPrice } = useShoppingCart();
     const history = useHistory();
 
     return (

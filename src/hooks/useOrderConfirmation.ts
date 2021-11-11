@@ -1,6 +1,6 @@
 import { IProduct, SizeProps } from 'types';
 import useAdditionals from './useAdditionals';
-import useShopList from './useShopList';
+import useShoppingCart from './useShoppingCart';
 
 type OrderProps = {
     totalProductPrice: string;
@@ -17,7 +17,7 @@ const useOrderConfirmation = (product: IProduct): OrderProps => {
     const { additionals, productOrderId, price } = product;
     const {
         handleAddOrRemove, updateProductSize, updateSodaFlavour, updateToppings,
-    } = useShopList();
+    } = useShoppingCart();
 
     const {
         getTotalPrice, toppingsAdded, sizeSelected, sodaFlavourSelected,
