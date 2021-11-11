@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { FC, memo } from 'react';
+import { FC } from 'react';
 import { IProduct } from 'types';
 import AdditionalTopics from 'components/AdditionalTopics';
 import useShoppingCart from 'hooks/useShoppingCart';
@@ -61,5 +60,7 @@ const ProductAdded: FC<IProduct> = (props) => {
         </Container>
     );
 };
+
+ProductAdded.displayName = 'Product Added';
 
 export default ProductAdded;
