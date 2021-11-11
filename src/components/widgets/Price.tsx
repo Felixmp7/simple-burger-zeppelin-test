@@ -10,7 +10,7 @@ const DollarPrice = styled.span<{ dollarColor?: string }>`
 `;
 
 type Props = {
-    price: string | number;
+    price: string;
     dollarColor?: string;
 };
 
