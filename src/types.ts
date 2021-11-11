@@ -1,18 +1,3 @@
-export type UpdateToppingsProps = {
-    productOrderId?: string;
-    toppings: string[];
-};
-
-export type UpdateFlavourProps = {
-    productOrderId?: string;
-    newFlavour: string;
-};
-
-export type UpdateSizeProps = {
-    productOrderId?: string;
-    productSize: SizeProps;
-};
-
 export type SizeProps = {
     name: string;
     extraCost: string;
