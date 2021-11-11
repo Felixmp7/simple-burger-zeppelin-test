@@ -60,7 +60,7 @@ type Props = {
     closeModal: () => void;
 };
 
-const ConfirmShoppingList = ({ closeModal }: Props): JSX.Element => {
+const ShoppingCart = ({ closeModal }: Props): JSX.Element => {
     const { shopList, getTotalPrice } = useShoppingCart();
     const history = useHistory();
 
@@ -85,4 +85,4 @@ const ConfirmShoppingList = ({ closeModal }: Props): JSX.Element => {
     );
 };
 
-export default ConfirmShoppingList;
+export default ShoppingCart;

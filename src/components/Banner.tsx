@@ -7,7 +7,7 @@ import useDisableBodyScroll from 'hooks/useDisableBodyScroll';
 import ShoppingBar from './widgets/ShoppingBar';
 import { breakPoints, colors } from '../constants';
 import ScreenModal from './widgets/ScreenModal';
-import OrderConfirmation from './OrderConfirmation';
+import ShoppingCart from './ShoppingCart';
 
 const Container = styled.div`
     position: relative;
@@ -95,7 +95,7 @@ const Banner = (): JSX.Element => {
             </div>
             {isShowOrder && (
                 <ScreenModal>
-                    <OrderConfirmation closeModal={() => setIsShowOrder(false)} />
+                    <ShoppingCart closeModal={() => setIsShowOrder(false)} />
                 </ScreenModal>
             )}
         </Container>
