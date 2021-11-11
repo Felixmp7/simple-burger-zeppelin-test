@@ -1,27 +1,27 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { SetterOrUpdater, useRecoilState } from 'recoil';
 import produce from 'immer';
 import shopListAtom from 'recoilState';
-import {
-    IProduct, UpdateFlavourProps, UpdateSizeProps, UpdateToppingsProps,
-} from 'types';
+import { IProduct, SizeProps } from 'types';
+
+interface IUpdateProps { productOrderId?: string; }
+
+interface IUpdateFlavourProps extends IUpdateProps { newFlavour: string; }
+
+interface IUpdateSizeProps extends IUpdateProps { newSize: SizeProps; }
+
+interface IUpdateToppingsProps extends IUpdateProps { topping: string; }
 
 interface IShoppingCartHookProps {
     shopList: Array<IProduct>;
     getTotalPrice: () => string;
     setShopList: SetterOrUpdater<Array<IProduct>>;
     handleAddOrRemove: (product: IProduct) => void;
-    updateProductSize: ({ productOrderId, productSize }: UpdateSizeProps) => void;
-    updateSodaFlavour: ({ productOrderId, newFlavour }: UpdateFlavourProps) => void;
-    updateToppings: ({ productOrderId, toppings }: UpdateToppingsProps) => void;
+    updateProductSize: ({ productOrderId, newSize }: IUpdateSizeProps) => void;
+    updateSodaFlavour: ({ productOrderId, newFlavour }: IUpdateFlavourProps) => void;
+    updateToppings: ({ productOrderId, topping }: IUpdateToppingsProps) => void;
+    getProductSubtotal: (productOrderId: string) => string;
 }
-
-// interface UpdateAdditionalProps {
-//     productOrderId: string;
-//     additional: {
-//         slug: 'toppings' | 'size' | 'sodaFlavour';
-//         value: Array<string> | string | SizeProps;
-//     }
-// }
 
 const useShoppingCart = (): IShoppingCartHookProps => {
     const [shopList, setShopList] = useRecoilState(shopListAtom);
@@ -47,29 +47,27 @@ const useShoppingCart = (): IShoppingCartHookProps => {
         return total.toFixed(2);
     };
 
-    const updateProductSize = ({ productOrderId, productSize } : UpdateSizeProps) => {
+    const getProductSubtotal = (productOrderId: string): string => {
+        const found = shopList.find((product) => product.productOrderId === productOrderId);
+        if (found) {
+            const subTotal = parseFloat(found?.price) + parseFloat(found?.additionals.size?.extraCost || '0.00');
+            return subTotal.toFixed(2);
+        }
+        return '-';
+    };
+
+    const updateProductSize = ({ productOrderId, newSize } : IUpdateSizeProps) => {
         const shopListUpdated = produce(shopList, (draft) => {
             const index = draft.findIndex((item) => item.productOrderId === productOrderId);
             if (index !== -1) {
-                draft[index].additionals.size = productSize;
+                draft[index].additionals.size = newSize;
             }
         });
 
         setShopList(shopListUpdated);
     };
 
-    // const updateAdditional = ({ productOrderId, additional: { slug, value } }: UpdateAdditionalProps) => {
-    //     const shopListUpdated = produce(shopList, (draft) => {
-    //         const index = draft.findIndex((item) => item.productOrderId === productOrderId);
-    //         if (index !== -1) {
-    //             draft[index].additionals[slug] = value;
-    //         }
-    //     });
-
-    //     setShopList(shopListUpdated);
-    // };
-
-    const updateSodaFlavour = ({ productOrderId, newFlavour } : UpdateFlavourProps) => {
+    const updateSodaFlavour = ({ productOrderId, newFlavour } : IUpdateFlavourProps) => {
         const shopListUpdated = produce(shopList, (draft) => {
             const index = draft.findIndex((item) => item.productOrderId === productOrderId);
             if (index !== -1) {
@@ -80,11 +78,16 @@ const useShoppingCart = (): IShoppingCartHookProps => {
         setShopList(shopListUpdated);
     };
 
-    const updateToppings = ({ productOrderId, toppings } : UpdateToppingsProps) => {
+    const updateToppings = ({ productOrderId, topping } : IUpdateToppingsProps) => {
         const shopListUpdated = produce(shopList, (draft) => {
             const index = draft.findIndex((item) => item.productOrderId === productOrderId);
             if (index !== -1) {
-                draft[index].additionals.toppings = toppings;
+                const toppingIndex = draft[index].additionals.toppings!.indexOf(topping);
+                if (toppingIndex === -1) {
+                    draft[index].additionals.toppings?.push(topping);
+                } else {
+                    draft[index].additionals.toppings?.splice(toppingIndex, 1);
+                }
             }
         });
 
@@ -99,6 +102,7 @@ const useShoppingCart = (): IShoppingCartHookProps => {
         updateProductSize,
         updateSodaFlavour,
         updateToppings,
+        getProductSubtotal,
     };
 };
 
