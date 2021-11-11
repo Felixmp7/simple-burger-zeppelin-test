@@ -1,25 +1,28 @@
-import { FC } from 'react';
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+import { FC, memo } from 'react';
 import { IProduct } from 'types';
 import AdditionalTopics from 'components/AdditionalTopics';
-import useOrderConfirmation from 'hooks/useOrderConfirmation';
+import useShoppingCart from 'hooks/useShoppingCart';
 import { Container, Image } from 'components/styled/ProductAdded';
 import Price from './widgets/Price';
 import CartButton from './widgets/CartButton';
 
 const ProductAdded: FC<IProduct> = (props) => {
     const {
-        totalProductPrice,
-        toppingsAdded,
-        sizeSelected,
-        sodaFlavourSelected,
-        removeOfOrder,
-        updateSize,
-        updateSoda,
-        updateToppingsAdded,
-    } = useOrderConfirmation(props);
+        handleAddOrRemove,
+        updateProductSize,
+        updateSodaFlavour,
+        updateToppings,
+        getProductSubtotal,
+    } = useShoppingCart();
 
     const {
-        image, name, description, productSlug,
+        image,
+        name,
+        description,
+        productSlug,
+        productOrderId,
+        additionals: { size, toppings, sodaFlavour },
     } = props;
 
     return (
@@ -32,9 +35,14 @@ const ProductAdded: FC<IProduct> = (props) => {
                         <p className="description">{description}</p>
                     </div>
                     <div className="container-actions">
-                        <div className="bubble"><Price dollarColor="#00000055" price={totalProductPrice} /></div>
+                        <div className="bubble">
+                            <Price
+                                dollarColor="#00000055"
+                                price={getProductSubtotal(productOrderId!)}
+                            />
+                        </div>
                         <div className="container-cart-button">
-                            <CartButton remove handleClick={removeOfOrder} />
+                            <CartButton remove handleClick={() => handleAddOrRemove(props)} />
                         </div>
                     </div>
                 </div>
@@ -42,12 +50,12 @@ const ProductAdded: FC<IProduct> = (props) => {
             <div className="additional-topics">
                 <AdditionalTopics
                     productSlug={productSlug}
-                    handleExtraCost={updateSize}
-                    size={sizeSelected}
-                    setToppings={updateToppingsAdded}
-                    toppings={toppingsAdded}
-                    setSodaFlavour={updateSoda}
-                    sodaFlavour={sodaFlavourSelected}
+                    handleExtraCost={(newSize) => updateProductSize({ productOrderId, newSize })}
+                    size={size}
+                    setToppings={(topping) => updateToppings({ productOrderId, topping })}
+                    toppings={toppings}
+                    setSodaFlavour={(newFlavour) => updateSodaFlavour({ productOrderId, newFlavour })}
+                    sodaFlavour={sodaFlavour}
                 />
             </div>
         </Container>
