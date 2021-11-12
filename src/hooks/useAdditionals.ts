@@ -11,12 +11,13 @@ interface IReturnedProps {
     handleExtraCost: ({ extraCost }: SizeProps) => void;
 }
 
-interface IProps extends IAdditionals {
+interface IProps {
     price: string;
+    additionals: IAdditionals;
 }
 
 const useAdditionals = ({
-    price, toppings, size, sodaFlavour,
+    price, additionals: { toppings, size, sodaFlavour },
 }: IProps): IReturnedProps => {
     const [toppingsAdded, setToppingsAdded] = useState(toppings || []);
     const [sizeSelected, setSizeSelected] = useState(size);
