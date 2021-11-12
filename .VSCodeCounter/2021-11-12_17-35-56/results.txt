@@ -1,0 +1,106 @@
+Date : 2021-11-12 17:35:56
+Directory : /Users/felixpacheco/Projects/Brocsoft/burgers-shop
+Total : 65 files,  2443 codes, 31 comments, 371 blanks, all 2845 lines
+
+Languages
++------------------+------------+------------+------------+------------+------------+
+| language         | files      | code       | comment    | blank      | total      |
++------------------+------------+------------+------------+------------+------------+
+| TypeScript React |         30 |      1,503 |          3 |        239 |      1,745 |
+| TypeScript       |         14 |        510 |          5 |         87 |        602 |
+| JSON             |          4 |        225 |          0 |          3 |        228 |
+| XML              |         14 |        126 |          0 |         14 |        140 |
+| CSS              |          1 |         30 |          0 |          6 |         36 |
+| Markdown         |          1 |         26 |          0 |         21 |         47 |
+| HTML             |          1 |         23 |         23 |          1 |         47 |
++------------------+------------+------------+------------+------------+------------+
+
+Directories
++------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                           | files      | code       | comment    | blank      | total      |
++------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                              |         65 |      2,443 |         31 |        371 |      2,845 |
+| public                                                                                         |          3 |         70 |         23 |          3 |         96 |
+| src                                                                                            |         58 |      2,147 |          8 |        345 |      2,500 |
+| src/assets                                                                                     |         13 |        104 |          0 |         13 |        117 |
+| src/assets/icons                                                                               |          7 |         35 |          0 |          7 |         42 |
+| src/assets/vectors                                                                             |          6 |         69 |          0 |          6 |         75 |
+| src/components                                                                                 |         26 |      1,404 |          0 |        227 |      1,631 |
+| src/components/styled                                                                          |          3 |        235 |          0 |         40 |        275 |
+| src/components/widgets                                                                         |         12 |        474 |          0 |         91 |        565 |
+| src/hooks                                                                                      |          6 |        406 |          0 |         65 |        471 |
+| src/services                                                                                   |          2 |         15 |          0 |          7 |         22 |
+| src/tests                                                                                      |          1 |         27 |          0 |          2 |         29 |
++------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++------------------------------------------------------------------------------------------------+------------------+------------+------------+------------+------------+
+| filename                                                                                       | language         | code       | comment    | blank      | total      |
++------------------------------------------------------------------------------------------------+------------------+------------+------------+------------+------------+
+| /Users/felixpacheco/Projects/Brocsoft/burgers-shop/.eslintrc.json                              | JSON             |        103 |          0 |          0 |        103 |
+| /Users/felixpacheco/Projects/Brocsoft/burgers-shop/README.md                                   | Markdown         |         26 |          0 |         21 |         47 |
+| /Users/felixpacheco/Projects/Brocsoft/burgers-shop/package.json                                | JSON             |         70 |          0 |          1 |         71 |
+| /Users/felixpacheco/Projects/Brocsoft/burgers-shop/public/index.html                           | HTML             |         23 |         23 |          1 |         47 |
+| /Users/felixpacheco/Projects/Brocsoft/burgers-shop/public/logo.svg                             | XML              |         22 |          0 |          1 |         23 |
+| /Users/felixpacheco/Projects/Brocsoft/burgers-shop/public/manifest.json                        | JSON             |         25 |          0 |          1 |         26 |
+| /Users/felixpacheco/Projects/Brocsoft/burgers-shop/src/App.tsx                                 | TypeScript React |         40 |          0 |          4 |         44 |
+| /Users/felixpacheco/Projects/Brocsoft/burgers-shop/src/Router.tsx                              | TypeScript React |         15 |          0 |          3 |         18 |
+| /Users/felixpacheco/Projects/Brocsoft/burgers-shop/src/assets/icons/car-icon.svg               | XML              |          3 |          0 |          1 |          4 |
+| /Users/felixpacheco/Projects/Brocsoft/burgers-shop/src/assets/icons/circle-checked.svg         | XML              |          3 |          0 |          1 |          4 |
+| /Users/felixpacheco/Projects/Brocsoft/burgers-shop/src/assets/icons/circle.svg                 | XML              |          3 |          0 |          1 |          4 |
+| /Users/felixpacheco/Projects/Brocsoft/burgers-shop/src/assets/icons/close.svg                  | XML              |         17 |          0 |          1 |         18 |
+| /Users/felixpacheco/Projects/Brocsoft/burgers-shop/src/assets/icons/shop-icon.svg              | XML              |          3 |          0 |          1 |          4 |
+| /Users/felixpacheco/Projects/Brocsoft/burgers-shop/src/assets/icons/square-checked.svg         | XML              |          3 |          0 |          1 |          4 |
+| /Users/felixpacheco/Projects/Brocsoft/burgers-shop/src/assets/icons/square.svg                 | XML              |          3 |          0 |          1 |          4 |
+| /Users/felixpacheco/Projects/Brocsoft/burgers-shop/src/assets/vectors/burger.svg               | XML              |          3 |          0 |          1 |          4 |
+| /Users/felixpacheco/Projects/Brocsoft/burgers-shop/src/assets/vectors/combos-vector-left.svg   | XML              |         16 |          0 |          1 |         17 |
+| /Users/felixpacheco/Projects/Brocsoft/burgers-shop/src/assets/vectors/combos-vector-right.svg  | XML              |         16 |          0 |          1 |         17 |
+| /Users/felixpacheco/Projects/Brocsoft/burgers-shop/src/assets/vectors/complete-logo.svg        | XML              |         22 |          0 |          1 |         23 |
+| /Users/felixpacheco/Projects/Brocsoft/burgers-shop/src/assets/vectors/logo.svg                 | XML              |          3 |          0 |          1 |          4 |
+| /Users/felixpacheco/Projects/Brocsoft/burgers-shop/src/assets/vectors/simpler.svg              | XML              |          9 |          0 |          1 |         10 |
+| /Users/felixpacheco/Projects/Brocsoft/burgers-shop/src/components/AddNewProduct.tsx            | TypeScript React |         62 |          0 |          7 |         69 |
+| /Users/felixpacheco/Projects/Brocsoft/burgers-shop/src/components/AdditionalTopics.tsx         | TypeScript React |         71 |          0 |         11 |         82 |
+| /Users/felixpacheco/Projects/Brocsoft/burgers-shop/src/components/Banner.tsx                   | TypeScript React |         91 |          0 |         15 |        106 |
+| /Users/felixpacheco/Projects/Brocsoft/burgers-shop/src/components/Footer.tsx                   | TypeScript React |         17 |          0 |          4 |         21 |
+| /Users/felixpacheco/Projects/Brocsoft/burgers-shop/src/components/OrderColumn.tsx              | TypeScript React |        113 |          0 |         14 |        127 |
+| /Users/felixpacheco/Projects/Brocsoft/burgers-shop/src/components/OrderFinished.tsx            | TypeScript React |         60 |          0 |          5 |         65 |
+| /Users/felixpacheco/Projects/Brocsoft/burgers-shop/src/components/Product.tsx                  | TypeScript React |         36 |          0 |          4 |         40 |
+| /Users/felixpacheco/Projects/Brocsoft/burgers-shop/src/components/ProductAdded.tsx             | TypeScript React |         61 |          0 |          6 |         67 |
+| /Users/felixpacheco/Projects/Brocsoft/burgers-shop/src/components/Products.tsx                 | TypeScript React |         51 |          0 |          8 |         59 |
+| /Users/felixpacheco/Projects/Brocsoft/burgers-shop/src/components/SectionBg.tsx                | TypeScript React |         57 |          0 |          9 |         66 |
+| /Users/felixpacheco/Projects/Brocsoft/burgers-shop/src/components/ShoppingCart.tsx             | TypeScript React |         76 |          0 |         13 |         89 |
+| /Users/felixpacheco/Projects/Brocsoft/burgers-shop/src/components/styled/AddNewProduct.tsx     | TypeScript React |         59 |          0 |         12 |         71 |
+| /Users/felixpacheco/Projects/Brocsoft/burgers-shop/src/components/styled/Product.tsx           | TypeScript React |         91 |          0 |         16 |        107 |
+| /Users/felixpacheco/Projects/Brocsoft/burgers-shop/src/components/styled/ProductAdded.tsx      | TypeScript React |         85 |          0 |         12 |         97 |
+| /Users/felixpacheco/Projects/Brocsoft/burgers-shop/src/components/widgets/Button.tsx           | TypeScript React |         23 |          0 |          6 |         29 |
+| /Users/felixpacheco/Projects/Brocsoft/burgers-shop/src/components/widgets/CartButton.tsx       | TypeScript React |         46 |          0 |          8 |         54 |
+| /Users/felixpacheco/Projects/Brocsoft/burgers-shop/src/components/widgets/CheckBox.tsx         | TypeScript React |         25 |          0 |          6 |         31 |
+| /Users/felixpacheco/Projects/Brocsoft/burgers-shop/src/components/widgets/CloseModalButton.tsx | TypeScript React |         23 |          0 |          5 |         28 |
+| /Users/felixpacheco/Projects/Brocsoft/burgers-shop/src/components/widgets/Price.tsx            | TypeScript React |         19 |          0 |          7 |         26 |
+| /Users/felixpacheco/Projects/Brocsoft/burgers-shop/src/components/widgets/ScreenLoader.tsx     | TypeScript React |         15 |          0 |          4 |         19 |
+| /Users/felixpacheco/Projects/Brocsoft/burgers-shop/src/components/widgets/ScreenModal.tsx      | TypeScript React |         22 |          0 |          5 |         27 |
+| /Users/felixpacheco/Projects/Brocsoft/burgers-shop/src/components/widgets/ShoppingBar.tsx      | TypeScript React |         50 |          0 |          8 |         58 |
+| /Users/felixpacheco/Projects/Brocsoft/burgers-shop/src/components/widgets/Sizes.tsx            | TypeScript React |         67 |          0 |         11 |         78 |
+| /Users/felixpacheco/Projects/Brocsoft/burgers-shop/src/components/widgets/SodaFlavours.tsx     | TypeScript React |         52 |          0 |         10 |         62 |
+| /Users/felixpacheco/Projects/Brocsoft/burgers-shop/src/components/widgets/Title.tsx            | TypeScript React |         77 |          0 |         11 |         88 |
+| /Users/felixpacheco/Projects/Brocsoft/burgers-shop/src/components/widgets/Toppings.tsx         | TypeScript React |         55 |          0 |         10 |         65 |
+| /Users/felixpacheco/Projects/Brocsoft/burgers-shop/src/constants.ts                            | TypeScript       |         42 |          0 |          3 |         45 |
+| /Users/felixpacheco/Projects/Brocsoft/burgers-shop/src/hooks/useAddProduct.ts                  | TypeScript       |         35 |          0 |          7 |         42 |
+| /Users/felixpacheco/Projects/Brocsoft/burgers-shop/src/hooks/useAdditionals.ts                 | TypeScript       |         51 |          0 |         10 |         61 |
+| /Users/felixpacheco/Projects/Brocsoft/burgers-shop/src/hooks/useDisableBodyScroll.ts           | TypeScript       |         11 |          0 |          3 |         14 |
+| /Users/felixpacheco/Projects/Brocsoft/burgers-shop/src/hooks/useDragAndDrop.ts                 | TypeScript       |         55 |          0 |         15 |         70 |
+| /Users/felixpacheco/Projects/Brocsoft/burgers-shop/src/hooks/useProducts.ts                    | TypeScript       |        164 |          0 |         11 |        175 |
+| /Users/felixpacheco/Projects/Brocsoft/burgers-shop/src/hooks/useShoppingCart.ts                | TypeScript       |         90 |          0 |         19 |        109 |
+| /Users/felixpacheco/Projects/Brocsoft/burgers-shop/src/index.css                               | CSS              |         30 |          0 |          6 |         36 |
+| /Users/felixpacheco/Projects/Brocsoft/burgers-shop/src/index.tsx                               | TypeScript React |         17 |          3 |          3 |         23 |
+| /Users/felixpacheco/Projects/Brocsoft/burgers-shop/src/react-app-env.d.ts                      | TypeScript       |          0 |          1 |          1 |          2 |
+| /Users/felixpacheco/Projects/Brocsoft/burgers-shop/src/recoilState.ts                          | TypeScript       |          4 |          0 |          3 |          7 |
+| /Users/felixpacheco/Projects/Brocsoft/burgers-shop/src/reportWebVitals.ts                      | TypeScript       |         15 |          0 |          3 |         18 |
+| /Users/felixpacheco/Projects/Brocsoft/burgers-shop/src/services/api.ts                         | TypeScript       |          8 |          0 |          3 |         11 |
+| /Users/felixpacheco/Projects/Brocsoft/burgers-shop/src/services/network.ts                     | TypeScript       |          7 |          0 |          4 |         11 |
+| /Users/felixpacheco/Projects/Brocsoft/burgers-shop/src/setupTests.ts                           | TypeScript       |          1 |          4 |          1 |          6 |
+| /Users/felixpacheco/Projects/Brocsoft/burgers-shop/src/tests/Button.test.tsx                   | TypeScript React |         27 |          0 |          2 |         29 |
+| /Users/felixpacheco/Projects/Brocsoft/burgers-shop/src/types.ts                                | TypeScript       |         27 |          0 |          4 |         31 |
+| /Users/felixpacheco/Projects/Brocsoft/burgers-shop/tsconfig.json                               | JSON             |         27 |          0 |          1 |         28 |
+| Total                                                                                          |                  |      2,443 |         31 |        371 |      2,845 |
++------------------------------------------------------------------------------------------------+------------------+------------+------------+------------+------------+
