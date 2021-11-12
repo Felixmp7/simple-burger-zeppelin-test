@@ -11,7 +11,7 @@ interface IProductProps extends IProduct {
     closeModal: () => void;
 }
 
-const ConfirmProduct = (props: IProductProps) : JSX.Element => {
+const AddNewProduct = (props: IProductProps) : JSX.Element => {
     const {
         handleSodaFlavour,
         toppingsAdded,
@@ -65,4 +65,4 @@ const ConfirmProduct = (props: IProductProps) : JSX.Element => {
     );
 };
 
-export default ConfirmProduct;
+export default AddNewProduct;
