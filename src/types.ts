@@ -16,6 +16,7 @@ export interface IProduct {
     productType: string;
     productSlug: string;
     price: string;
+    status: 'inProcess' | 'done' | null;
     productOrderId?: string;
     additionals: IAdditionals;
 }
