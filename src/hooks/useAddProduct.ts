@@ -1,5 +1,4 @@
 import { IProduct, SizeProps } from 'types';
-import produce from 'immer';
 import useShoppingCart from './useShoppingCart';
 
 interface IReturnedProps { addToCart: () => void; }
@@ -11,22 +10,27 @@ interface IProps extends IProduct {
     sodaFlavourSelected?: string;
 }
 
-const useAddProduct = (props: IProps): IReturnedProps => {
+const useAddProduct = ({
+    closeModal,
+    price,
+    toppingsAdded,
+    sizeSelected,
+    sodaFlavourSelected,
+    ...rest
+}: IProps): IReturnedProps => {
     const { handleAddOrRemove } = useShoppingCart();
-    const {
-        closeModal, price, toppingsAdded, sizeSelected, sodaFlavourSelected,
-    } = props;
 
     const addToCart = () => {
-        const newProduct = produce(props, (draft) => {
-            draft.price = price;
-            draft.productOrderId = Math.random().toString(36).slice(2);
-            draft.additionals = {
+        const newProduct = {
+            ...rest,
+            price,
+            productOrderId: Math.random().toString(36).slice(2),
+            additionals: {
                 toppings: toppingsAdded,
                 size: sizeSelected,
                 sodaFlavour: sodaFlavourSelected,
-            };
-        });
+            },
+        };
         handleAddOrRemove(newProduct);
         closeModal();
     };
