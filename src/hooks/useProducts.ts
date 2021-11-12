@@ -17,6 +17,7 @@ const data = [
         productSlug: 'combo',
         description: 'Simple but jucy burger. Choose your toppings.',
         price: '9.99',
+        status: null,
         additionals: {
             toppings: undefined,
             size: { name: 'Small', extraCost: '0.00' },
@@ -31,6 +32,7 @@ const data = [
         productSlug: 'combo',
         description: 'Double jucy delicious burger. Choose your toppings.',
         price: '10.99',
+        status: null,
         additionals: {
             toppings: undefined,
             size: { name: 'Small', extraCost: '0.00' },
@@ -46,6 +48,7 @@ const data = [
         productSlug: 'combo',
         description: 'What’s a burger without cheese? Choose your toppings.',
         price: '11.99',
+        status: null,
         additionals: {
             toppings: undefined,
             size: { name: 'Small', extraCost: '0.00' },
@@ -61,6 +64,7 @@ const data = [
         productSlug: 'combo',
         description: 'What’s a burger without melted delicious DOUBLE cheese?',
         price: '15.99',
+        status: null,
         additionals: {
             toppings: undefined,
             size: { name: 'Small', extraCost: '0.00' },
@@ -76,6 +80,7 @@ const data = [
         productSlug: 'burger',
         description: 'Simple but jucy burger. Choose your toppings.',
         price: '6.25',
+        status: null,
         additionals: {
             toppings: undefined,
         },
@@ -88,6 +93,7 @@ const data = [
         productSlug: 'burger',
         description: 'Double jucy delicious burger. Choose your toppings.',
         price: '8.49',
+        status: null,
         additionals: {
             toppings: undefined,
         },
@@ -100,6 +106,7 @@ const data = [
         productSlug: 'burger',
         description: 'What’s a burger without cheese? Choose your toppings.',
         price: '9.00',
+        status: null,
         additionals: {
             toppings: undefined,
         },
@@ -112,6 +119,7 @@ const data = [
         productSlug: 'burger',
         description: 'What’s a burger without melted delicious DOUBLE cheese?',
         price: '13.00',
+        status: null,
         additionals: {
             toppings: undefined,
         },
@@ -124,6 +132,7 @@ const data = [
         productSlug: 'fries',
         description: 'Crunchy unique fries.',
         price: '3.49',
+        status: null,
         additionals: {
             size: { name: 'Small', extraCost: '0.00' },
         },
@@ -136,6 +145,7 @@ const data = [
         productSlug: 'soda',
         description: 'Accompany your burger with a soda.',
         price: '1.00',
+        status: null,
         additionals: {
             sodaFlavour: 'Cola',
         },
