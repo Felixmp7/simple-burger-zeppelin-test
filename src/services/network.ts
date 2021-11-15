@@ -1,10 +1,7 @@
-import axios from 'axios';
+import ky from 'ky';
 
-const baseURL = process.env.BASE_URL;
+const baseURL = process.env.REACT_APP_BASE_URL;
 
-const instance = axios.create({
-    baseURL,
-    responseType: 'json',
-});
+const instance = ky.create({ prefixUrl: baseURL });
 
 export default instance;
