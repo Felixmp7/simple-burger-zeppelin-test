@@ -25,6 +25,7 @@ const useAddProduct = ({
             ...rest,
             price,
             productOrderId: Math.random().toString(36).slice(2),
+            status: 'pending',
             additionals: {
                 toppings: toppingsAdded,
                 size: sizeSelected,
