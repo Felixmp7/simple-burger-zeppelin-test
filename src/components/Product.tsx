@@ -2,10 +2,10 @@ import { FC, useState } from 'react';
 import { IProduct } from 'types';
 import useDisableBodyScroll from 'hooks/useDisableBodyScroll';
 import { Container, Image } from 'components/styled/Product';
-import AddNewProduct from '../AddNewProduct';
-import ScreenModal from './ScreenModal';
-import Price from './Price';
-import CartButton from './CartButton';
+import ScreenModal from 'components/widgets/ScreenModal';
+import Price from 'components/widgets/Price';
+import CartButton from 'components/widgets/CartButton';
+import AddNewProduct from './AddNewProduct';
 
 const Product: FC<IProduct> = (props) => {
     const [isAddNew, setIsAddNew] = useState(false);

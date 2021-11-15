@@ -1,8 +1,8 @@
 import { useHistory } from 'react-router-dom';
-import useShopList from 'hooks/useShopList';
+import useShoppingCart from 'hooks/useShoppingCart';
 import styled from 'styled-components';
 import carIcon from 'assets/icons/car-icon.svg';
-import ProductAdded from './widgets/ProductAdded';
+import ProductAdded from './ProductAdded';
 import CloseModalButton from './widgets/CloseModalButton';
 import { breakPoints } from '../constants';
 import ShoppingBar from './widgets/ShoppingBar';
@@ -56,13 +56,13 @@ const Container = styled.div`
     };
 `;
 
-type Props = {
+interface IProps {
     closeModal: () => void;
-};
+}
 
-const ConfirmShoppingList = ({ closeModal }: Props): JSX.Element => {
-    const { shopList, getTotalPrice } = useShopList();
+const ShoppingCart = ({ closeModal }: IProps): JSX.Element => {
     const history = useHistory();
+    const { shopList, getTotalPrice } = useShoppingCart();
 
     return (
         <Container>
@@ -85,4 +85,4 @@ const ConfirmShoppingList = ({ closeModal }: Props): JSX.Element => {
     );
 };
 
-export default ConfirmShoppingList;
+export default ShoppingCart;

@@ -2,12 +2,12 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import banner from 'assets/backgrounds/banner.png';
 import logo from 'assets/vectors/complete-logo.svg';
-import useShopList from 'hooks/useShopList';
+import useShoppingCart from 'hooks/useShoppingCart';
 import useDisableBodyScroll from 'hooks/useDisableBodyScroll';
 import ShoppingBar from './widgets/ShoppingBar';
 import { breakPoints, colors } from '../constants';
 import ScreenModal from './widgets/ScreenModal';
-import OrderConfirmation from './OrderConfirmation';
+import ShoppingCart from './ShoppingCart';
 
 const Container = styled.div`
     position: relative;
@@ -79,7 +79,7 @@ const Logo = styled.img`
 const Banner = (): JSX.Element => {
     const [isShowOrder, setIsShowOrder] = useState(false);
     useDisableBodyScroll(isShowOrder);
-    const { getTotalPrice } = useShopList();
+    const { getTotalPrice } = useShoppingCart();
     const totalPrice = getTotalPrice();
 
     return (
@@ -95,7 +95,7 @@ const Banner = (): JSX.Element => {
             </div>
             {isShowOrder && (
                 <ScreenModal>
-                    <OrderConfirmation closeModal={() => setIsShowOrder(false)} />
+                    <ShoppingCart closeModal={() => setIsShowOrder(false)} />
                 </ScreenModal>
             )}
         </Container>

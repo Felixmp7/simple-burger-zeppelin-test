@@ -34,33 +34,31 @@ const StyledButton = styled(Button)<{ onClick?: (topping: string) => void }>`
     margin-bottom: 15px;
 `;
 
-type Props = {
-    toppings: Array<string> | undefined;
+interface IProps {
+    toppings?: Array<string>;
     setToppings: (topping: string) => void;
-};
+}
 
-const Toppings = ({ toppings, setToppings }: Props): JSX.Element | null => {
-    if (!toppings) {
-        return null;
-    }
+const Toppings = ({ toppings, setToppings }: IProps): JSX.Element => (
+    <>
+        <Title>Toppings</Title>
+        <Container>
+            {toppingsList.map(({ name }) => {
+                const isChecked = toppings?.some((item) => item === name);
+                const icon = isChecked ? squareChecked : square;
 
-    return (
-        <>
-            <Title>Toppings</Title>
-            <Container>
-                {toppingsList.map(({ name }) => {
-                    const isChecked = toppings.some((item) => item === name);
-                    const icon = isChecked ? squareChecked : square;
+                return (
+                    <StyledButton key={name} onClick={() => setToppings(name)}>
+                        <CheckBox icon={icon} label={name} />
+                    </StyledButton>
+                );
+            })}
+        </Container>
+    </>
+);
 
-                    return (
-                        <StyledButton key={name} onClick={() => setToppings(name)}>
-                            <CheckBox icon={icon} label={name} />
-                        </StyledButton>
-                    );
-                })}
-            </Container>
-        </>
-    );
+Toppings.defaultProps = {
+    toppings: [],
 };
 
 export default Toppings;
