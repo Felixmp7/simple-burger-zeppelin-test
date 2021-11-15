@@ -42,3 +42,7 @@ export const colors = {
     green: '#5AD88C',
     greenHover: '#4eb878',
 };
+
+export const pendingStatus = 'pending';
+export const inProcessStatus = 'inProcess';
+export const doneStatus = 'done';
