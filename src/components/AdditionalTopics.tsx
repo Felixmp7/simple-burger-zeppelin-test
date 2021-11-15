@@ -30,15 +30,15 @@ const Container = styled.div`
     }
 `;
 
-type Props = {
+interface IProps {
     productSlug: string;
     size: SizeProps | undefined;
     toppings: string[] | undefined;
     sodaFlavour: string | undefined;
-    handleExtraCost: (additional: SizeProps) => void;
-    setToppings: (topping: string) => void;
-    setSodaFlavour: (newFlavour: string) => void;
-};
+    handleExtraCost: (params: any) => void;
+    setToppings: (params: any) => void;
+    setSodaFlavour: (params: any) => void;
+}
 
 const AdditionalTopics = ({
     productSlug,
@@ -48,7 +48,7 @@ const AdditionalTopics = ({
     handleExtraCost,
     setToppings,
     setSodaFlavour,
-}: Props): JSX.Element => {
+}: IProps): JSX.Element => {
     if (productSlug === 'burger') {
         return <Toppings toppings={toppings} setToppings={setToppings} />;
     }

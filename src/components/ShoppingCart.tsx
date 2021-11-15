@@ -1,8 +1,8 @@
 import { useHistory } from 'react-router-dom';
-import useShopList from 'hooks/useShopList';
+import useShoppingCart from 'hooks/useShoppingCart';
 import styled from 'styled-components';
 import carIcon from 'assets/icons/car-icon.svg';
-import ProductAdded from './widgets/ProductAdded';
+import ProductAdded from './ProductAdded';
 import CloseModalButton from './widgets/CloseModalButton';
 import { breakPoints } from '../constants';
 import ShoppingBar from './widgets/ShoppingBar';
@@ -18,7 +18,7 @@ const Container = styled.div`
         position: absolute;
         top: 40px;
         right: -40px;
-    }
+    };
 
     .container-products {
         height: 90%;
@@ -28,41 +28,41 @@ const Container = styled.div`
 
         &::-webkit-scrollbar {
             display: none;
-        }
-    }
+        };
+
+        .empty {
+            font-size: 3rem;
+            text-align: center;
+            color: white;
+        };
+    };
 
     .finish-order {
         padding: 16px;
         background-color: white;
         border-radius: 8px;
-    }
+    };
 
     @media screen and (max-width: ${breakPoints.tablet}) {
         width: 80vw;
-    }
+    };
 
     @media screen and (max-width: ${breakPoints.mobileSm}) {
         width: 288px;
         .close-button {
             right: -10px;
             top: 20px;
-        }
-    }
+        };
+    };
 `;
 
-const EmptyList = styled.div`
-    font-size: 3rem;
-    text-align: center;
-    color: white;
-`;
-
-type Props = {
+interface IProps {
     closeModal: () => void;
-};
+}
 
-const ConfirmShoppingList = ({ closeModal }: Props): JSX.Element => {
-    const { shopList, getTotalPrice } = useShopList();
+const ShoppingCart = ({ closeModal }: IProps): JSX.Element => {
     const history = useHistory();
+    const { shopList, getTotalPrice } = useShoppingCart();
 
     return (
         <Container>
@@ -71,7 +71,7 @@ const ConfirmShoppingList = ({ closeModal }: Props): JSX.Element => {
                 {shopList.length
                     ? shopList.map((product) => (
                         <ProductAdded key={product.productOrderId} {...product} />
-                    )) : <EmptyList>No products ordered</EmptyList>}
+                    )) : <div className="empty">No products ordered</div>}
             </div>
             <div className="finish-order">
                 <ShoppingBar
@@ -85,4 +85,4 @@ const ConfirmShoppingList = ({ closeModal }: Props): JSX.Element => {
     );
 };
 
-export default ConfirmShoppingList;
+export default ShoppingCart;

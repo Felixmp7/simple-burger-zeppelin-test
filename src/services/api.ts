@@ -1,9 +1,9 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+import { AxiosResponse } from 'axios';
 import network from './network';
 
 const API = {
     products: {
-        getProducts: async () => network.get(''),
+        getProducts: async (): Promise<AxiosResponse<any, any>> => network.get(''),
     },
 };
 

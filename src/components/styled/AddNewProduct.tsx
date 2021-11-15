@@ -65,5 +65,6 @@ export const Image = styled.div<IProductStyle>`
     overflow: hidden;
     background-image: ${({ image }) => `url(${image})`};
     background-size: cover;
-    background-position-x: center;
+    background-repeat: no-repeat;
+    background-position: center;
 `;

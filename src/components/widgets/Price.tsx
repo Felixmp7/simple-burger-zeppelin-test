@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const Container = styled.span<{ dollarColor?: string }>`
+const DollarPrice = styled.span<{ dollarColor?: string }>`
     font-size: 12px;
 
     &:before {
@@ -10,12 +10,12 @@ const Container = styled.span<{ dollarColor?: string }>`
 `;
 
 type Props = {
-    price: string | number;
+    price: string;
     dollarColor?: string;
 };
 
 const Price = ({ price, dollarColor }: Props): JSX.Element => (
-    <Container dollarColor={dollarColor}>{price}</Container>
+    <DollarPrice dollarColor={dollarColor}>{price}</DollarPrice>
 );
 
 Price.defaultProps = {

@@ -1,26 +1,33 @@
-import { IProductModalProps } from 'types';
+import { IProduct } from 'types';
 import carIcon from 'assets/icons/car-icon.svg';
-import useOrderProduct from 'hooks/useOrderProduct';
+import useAdditionals from 'hooks/useAdditionals';
+import useAddProduct from 'hooks/useAddProduct';
 import { Container, Image } from 'components/styled/AddNewProduct';
 import AdditionalTopics from './AdditionalTopics';
 import ShoppingBar from './widgets/ShoppingBar';
 import CloseModalButton from './widgets/CloseModalButton';
 
-const ConfirmProduct = (props: IProductModalProps) : JSX.Element => {
+interface IProductProps extends IProduct {
+    closeModal: () => void;
+}
+
+const AddNewProduct = (props: IProductProps) : JSX.Element => {
     const {
-        totalProductPrice,
-        sizeSelected,
-        toppingsAdded,
         handleSodaFlavour,
+        toppingsAdded,
+        sizeSelected,
         sodaFlavourSelected,
-        closeModal,
-        handleExtraCost,
+        getTotalPrice,
         handleTopping,
-        addToCart,
-    } = useOrderProduct(props);
+        handleExtraCost,
+    } = useAdditionals(props);
+
+    const { addToCart } = useAddProduct({
+        ...props, sodaFlavourSelected, sizeSelected, toppingsAdded,
+    });
 
     const {
-        image, name, description, productSlug,
+        image, name, description, productSlug, closeModal,
     } = props;
 
     return (
@@ -49,7 +56,7 @@ const ConfirmProduct = (props: IProductModalProps) : JSX.Element => {
             <div className="container-add-to-order">
                 <ShoppingBar
                     text="Add to my order"
-                    price={totalProductPrice}
+                    price={getTotalPrice()}
                     icon={carIcon}
                     onClick={addToCart}
                 />
@@ -58,4 +65,4 @@ const ConfirmProduct = (props: IProductModalProps) : JSX.Element => {
     );
 };
 
-export default ConfirmProduct;
+export default AddNewProduct;

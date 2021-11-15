@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { IProduct } from 'types';
 import Title from './widgets/Title';
-import Product from './widgets/Product';
+import Product from './Product';
 import { breakPoints } from '../constants';
 
 const ContainerContent = styled.div`
@@ -46,15 +46,11 @@ type Props = {
     productTitle: string;
 }
 
-const Products = ({
-    products, descriptionTitle, productTitle,
-}: Props): JSX.Element => (
+const Products = ({ products, descriptionTitle, productTitle }: Props): JSX.Element => (
     <ContainerContent>
         <Title descriptionTitle={descriptionTitle} productTitle={productTitle} />
         <div className="products-container">
-            {products.map((product) => (
-                <Product key={product.id} {...product} />
-            ))}
+            {products.map((product) => <Product key={product.id} {...product} />)}
         </div>
     </ContainerContent>
 );

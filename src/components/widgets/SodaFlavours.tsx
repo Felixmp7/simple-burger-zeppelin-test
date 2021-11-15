@@ -35,33 +35,27 @@ const StyledButton = styled(Button) <{ onClick?: (topping: string) => void }>`
     margin-bottom: 15px;
 `;
 
-type Props = {
+interface IProps {
     sodaFlavour: string| undefined;
     setSodaFlavour: (newFlavour: string) => void;
-};
+}
 
-const SodaFlavours = ({ setSodaFlavour, sodaFlavour }: Props): JSX.Element | null => {
-    if (!sodaFlavour) {
-        return null;
-    }
+const SodaFlavours = ({ setSodaFlavour, sodaFlavour }: IProps): JSX.Element => (
+    <>
+        <Title>Soda flavours</Title>
+        <Container>
+            {sodaFlavoursList.map(({ name }) => {
+                const isChecked = sodaFlavour === name;
+                const icon = isChecked ? circleChecked : circle;
 
-    return (
-        <>
-            <Title>Soda flavours</Title>
-            <Container>
-                {sodaFlavoursList.map(({ name }) => {
-                    const isChecked = sodaFlavour === name;
-                    const icon = isChecked ? circleChecked : circle;
-
-                    return (
-                        <StyledButton key={name} onClick={() => setSodaFlavour(name)}>
-                            <CheckBox icon={icon} label={name} />
-                        </StyledButton>
-                    );
-                })}
-            </Container>
-        </>
-    );
-};
+                return (
+                    <StyledButton key={name} onClick={() => setSodaFlavour(name)}>
+                        <CheckBox icon={icon} label={name} />
+                    </StyledButton>
+                );
+            })}
+        </Container>
+    </>
+);
 
 export default SodaFlavours;
