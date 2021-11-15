@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { DragDropContext } from 'react-beautiful-dnd';
 import useDNDProducts from 'hooks/useDNDProducts';
-import OrderColumn from './OrderColumn';
+import BoardColumn from './BoardColumn';
 import { doneStatus, inProcessStatus, pendingStatus } from '../constants';
 
 const Container = styled.div`
@@ -13,7 +13,7 @@ const Container = styled.div`
     }
 `;
 
-const OrderFinished = (): JSX.Element => {
+const OrderBoard = (): JSX.Element => {
     const {
         allList: {
             pending: pendings,
@@ -27,19 +27,19 @@ const OrderFinished = (): JSX.Element => {
             <h2>Orders</h2>
             <DragDropContext onDragEnd={onDragEnd}>
                 <div className="container-grid">
-                    <OrderColumn
+                    <BoardColumn
                         droppableId={pendingStatus}
                         titleColor="gray"
                         columnTitle="Pendings"
                         orderList={pendings}
                     />
-                    <OrderColumn
+                    <BoardColumn
                         droppableId={inProcessStatus}
                         titleColor="blue"
                         columnTitle="In Process"
                         orderList={inProcess}
                     />
-                    <OrderColumn
+                    <BoardColumn
                         droppableId={doneStatus}
                         titleColor="green"
                         columnTitle="Done"
@@ -51,4 +51,4 @@ const OrderFinished = (): JSX.Element => {
     );
 };
 
-export default OrderFinished;
+export default OrderBoard;

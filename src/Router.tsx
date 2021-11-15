@@ -2,13 +2,13 @@ import {
     BrowserRouter as Router, Switch, Route, Redirect,
 } from 'react-router-dom';
 import App from 'App';
-import OrderFinished from 'components/OrderFinished';
+import OrderBoard from 'components/OrderBoard';
 
 const MainRouter = (): JSX.Element => (
     <Router>
         <Switch>
             <Route exact path="/"><App /></Route>
-            <Route exact path="/order-finished"><OrderFinished /></Route>
+            <Route exact path="/order-finished"><OrderBoard /></Route>
             <Redirect from="*" to="/" />
         </Switch>
     </Router>

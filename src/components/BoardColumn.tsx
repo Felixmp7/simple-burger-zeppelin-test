@@ -75,7 +75,7 @@ interface IProps {
     orderList: Array<IProduct>;
 }
 
-const OrderColumn = ({
+const BoardColumn = ({
     orderList, columnTitle, titleColor, droppableId,
 }: IProps): JSX.Element => (
     <Column titleColor={titleColor}>
@@ -130,4 +130,4 @@ const OrderColumn = ({
     </Column>
 );
 
-export default OrderColumn;
+export default BoardColumn;
