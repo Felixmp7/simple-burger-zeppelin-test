@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { DragDropContext } from 'react-beautiful-dnd';
-import useDragAndDrop from 'hooks/useDragAndDrop';
+import useDNDProducts from 'hooks/useDNDProducts';
 import OrderColumn from './OrderColumn';
 import { doneStatus, inProcessStatus, pendingStatus } from '../constants';
 
@@ -20,7 +20,7 @@ const OrderFinished = (): JSX.Element => {
             inProcess,
             done,
         }, onDragEnd,
-    } = useDragAndDrop();
+    } = useDNDProducts();
 
     return (
         <Container>

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import styled from 'styled-components';
 import { IProduct } from 'types';
 import { Draggable, Droppable } from 'react-beautiful-dnd';

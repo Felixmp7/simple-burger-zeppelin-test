@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { SetterOrUpdater, useRecoilState } from 'recoil';
 import produce from 'immer';
 import shopListAtom from 'recoilState';
