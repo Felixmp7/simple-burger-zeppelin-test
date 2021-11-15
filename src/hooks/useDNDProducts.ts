@@ -4,7 +4,7 @@ import { IProduct } from 'types';
 import useShoppingCart from './useShoppingCart';
 import { doneStatus, inProcessStatus, pendingStatus } from '../constants';
 
-interface IUseDragAndDropProductsProps {
+interface IUseDNDProductsProps {
     allList: IProductsStatus;
     onDragEnd: (result: DropResult) => void;
 }
@@ -17,7 +17,7 @@ type DroppableSource = {
     index: number;
 };
 
-const useDragAndDropProducts = (): IUseDragAndDropProductsProps => {
+const useDNDProducts = (): IUseDNDProductsProps => {
     const { shopList } = useShoppingCart();
     const pending = shopList.filter(({ status }) => status === pendingStatus);
     const inProcess = shopList.filter(({ status }) => status === inProcessStatus);
@@ -77,4 +77,4 @@ const useDragAndDropProducts = (): IUseDragAndDropProductsProps => {
     return { allList, onDragEnd };
 };
 
-export default useDragAndDropProducts;
+export default useDNDProducts;
