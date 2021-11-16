@@ -13,6 +13,10 @@ interface IProductProps extends IProduct {
 
 const AddNewProduct = (props: IProductProps) : JSX.Element => {
     const {
+        image, name, description, productSlug, closeModal,
+    } = props;
+
+    const {
         handleSodaFlavour,
         toppingsAdded,
         sizeSelected,
@@ -29,12 +33,8 @@ const AddNewProduct = (props: IProductProps) : JSX.Element => {
         sodaFlavourSelected,
         sizeSelected,
         toppingsAdded,
-        callback: props.closeModal,
+        callback: closeModal,
     });
-
-    const {
-        image, name, description, productSlug, closeModal,
-    } = props;
 
     return (
         <Container>
