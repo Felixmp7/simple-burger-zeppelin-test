@@ -16,6 +16,7 @@ export interface IProduct {
     productType: string;
     productSlug: string;
     price: string;
+    deliveryTime: number;
     productOrderId?: string;
     status?: string;
     additionals: IAdditionals;
