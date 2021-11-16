@@ -26,10 +26,10 @@ const AddNewProduct = (props: IProductProps) : JSX.Element => {
 
     const handleAddNewProduct = () => addNewProduct({
         ...props,
-        callback: props.closeModal,
         sodaFlavourSelected,
         sizeSelected,
         toppingsAdded,
+        callback: props.closeModal,
     });
 
     const {
