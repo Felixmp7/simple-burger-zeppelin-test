@@ -13,7 +13,7 @@ interface IUpdateSizeProps extends IUpdateProps { newSize: SizeProps; }
 interface IUpdateToppingsProps extends IUpdateProps { topping: string; }
 
 interface IProps extends IProduct {
-    closeModal: () => void;
+    callback: () => void;
     toppingsAdded: string[];
     sizeSelected?: SizeProps;
     sodaFlavourSelected?: string;
@@ -47,7 +47,7 @@ const useShoppingCart = (): IShoppingCartHookProps => {
     };
 
     const addNewProduct = ({
-        closeModal,
+        callback,
         price,
         toppingsAdded,
         sizeSelected,
@@ -66,7 +66,7 @@ const useShoppingCart = (): IShoppingCartHookProps => {
             },
         };
         handleAddOrRemove(newProduct);
-        closeModal();
+        callback();
     };
 
     const getTotalPrice = () => {

@@ -25,7 +25,11 @@ const AddNewProduct = (props: IProductProps) : JSX.Element => {
     const { addNewProduct } = useShoppingCart();
 
     const handleAddNewProduct = () => addNewProduct({
-        ...props, sodaFlavourSelected, sizeSelected, toppingsAdded,
+        ...props,
+        callback: props.closeModal,
+        sodaFlavourSelected,
+        sizeSelected,
+        toppingsAdded,
     });
 
     const {
