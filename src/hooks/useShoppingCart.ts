@@ -12,6 +12,13 @@ interface IUpdateSizeProps extends IUpdateProps { newSize: SizeProps; }
 
 interface IUpdateToppingsProps extends IUpdateProps { topping: string; }
 
+interface IProps extends IProduct {
+    closeModal: () => void;
+    toppingsAdded: string[];
+    sizeSelected?: SizeProps;
+    sodaFlavourSelected?: string;
+}
+
 interface IShoppingCartHookProps {
     shopList: Array<IProduct>;
     getTotalPrice: () => string;
@@ -21,6 +28,7 @@ interface IShoppingCartHookProps {
     updateSodaFlavour: ({ productOrderId, newFlavour }: IUpdateFlavourProps) => void;
     updateToppings: ({ productOrderId, topping }: IUpdateToppingsProps) => void;
     getProductSubtotal: (productOrderId: string) => string;
+    addNewProduct: (params: IProps) => void;
 }
 
 const useShoppingCart = (): IShoppingCartHookProps => {
@@ -36,6 +44,29 @@ const useShoppingCart = (): IShoppingCartHookProps => {
             }
         });
         setShopList(shopListUpdated);
+    };
+
+    const addNewProduct = ({
+        closeModal,
+        price,
+        toppingsAdded,
+        sizeSelected,
+        sodaFlavourSelected,
+        ...rest
+    }: IProps) => {
+        const newProduct = {
+            ...rest,
+            price,
+            productOrderId: Math.random().toString(36).slice(2),
+            status: 'pending',
+            additionals: {
+                toppings: toppingsAdded,
+                size: sizeSelected,
+                sodaFlavour: sodaFlavourSelected,
+            },
+        };
+        handleAddOrRemove(newProduct);
+        closeModal();
     };
 
     const getTotalPrice = () => {
@@ -96,6 +127,7 @@ const useShoppingCart = (): IShoppingCartHookProps => {
 
     return {
         shopList,
+        addNewProduct,
         getTotalPrice,
         setShopList,
         handleAddOrRemove,

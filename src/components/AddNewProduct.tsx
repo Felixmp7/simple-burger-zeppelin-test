@@ -1,7 +1,7 @@
 import { IProduct } from 'types';
 import carIcon from 'assets/icons/car-icon.svg';
 import useAdditionals from 'hooks/useAdditionals';
-import useAddProduct from 'hooks/useAddProduct';
+import useShoppingCart from 'hooks/useShoppingCart';
 import { Container, Image } from 'components/styled/AddNewProduct';
 import AdditionalTopics from './AdditionalTopics';
 import ShoppingBar from './widgets/ShoppingBar';
@@ -22,7 +22,9 @@ const AddNewProduct = (props: IProductProps) : JSX.Element => {
         handleExtraCost,
     } = useAdditionals(props);
 
-    const { addToCart } = useAddProduct({
+    const { addNewProduct } = useShoppingCart();
+
+    const handleAddNewProduct = () => addNewProduct({
         ...props, sodaFlavourSelected, sizeSelected, toppingsAdded,
     });
 
@@ -58,7 +60,7 @@ const AddNewProduct = (props: IProductProps) : JSX.Element => {
                     text="Add to my order"
                     price={getTotalPrice()}
                     icon={carIcon}
-                    onClick={addToCart}
+                    onClick={handleAddNewProduct}
                 />
             </div>
         </Container>
