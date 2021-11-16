@@ -1,11 +1,11 @@
-import { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import useShoppingCart from 'hooks/useShoppingCart';
 import styled from 'styled-components';
 import carIcon from 'assets/icons/car-icon.svg';
 import ProductAdded from './ProductAdded';
 import CloseModalButton from './widgets/CloseModalButton';
-import { breakPoints } from '../constants';
-import ShoppingBar from './widgets/ShoppingBar';
+import { breakPoints, colors } from '../constants';
+import Price from './widgets/Price';
 
 const Container = styled.div`
     position: relative;
@@ -56,12 +56,31 @@ const Container = styled.div`
     };
 `;
 
+const StyledLink = styled(Link)`
+    width: 100%;
+    height: 100%;
+    padding: 8px 16px;
+    background-color: ${colors.green};
+    display: flex;
+    border-radius: 8px;
+    color: white;
+    text-decoration: none;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 12px;
+    font-weight: 500;
+
+    img {
+        width: 11.47px;
+        height: 13.28px;
+    }
+`;
+
 interface IProps {
     closeModal: () => void;
 }
 
 const ShoppingCart = ({ closeModal }: IProps): JSX.Element => {
-    const history = useHistory();
     const { shopList, getTotalPrice } = useShoppingCart();
 
     return (
@@ -71,16 +90,17 @@ const ShoppingCart = ({ closeModal }: IProps): JSX.Element => {
                 {shopList.length
                     ? shopList.map((product) => (
                         <ProductAdded key={product.productOrderId} {...product} />
-                    )) : <div className="empty">No products ordered</div>}
+                    )) : <div className="empty">No products</div>}
             </div>
-            <div className="finish-order">
-                <ShoppingBar
-                    text="Finalize order"
-                    price={getTotalPrice()}
-                    icon={carIcon}
-                    onClick={() => history.push('/order-finished')}
-                />
-            </div>
+            {shopList.length && (
+                <div className="finish-order">
+                    <StyledLink to="/order-finished">
+                        <img src={carIcon} alt="Shopping Icon" />
+                        <span>Finalize order</span>
+                        <Price price={getTotalPrice()} />
+                    </StyledLink>
+                </div>
+            )}
         </Container>
     );
 };
