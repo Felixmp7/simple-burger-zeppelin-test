@@ -77,10 +77,16 @@ const Logo = styled.img`
 `;
 
 const Banner = (): JSX.Element => {
-    const [isShowOrder, setIsShowOrder] = useState(false);
-    useDisableBodyScroll(isShowOrder);
+    const [isOpenShoppingCart, setIsOpenShoppingCart] = useState(false);
+    useDisableBodyScroll(isOpenShoppingCart);
     const { getTotalPrice } = useShoppingCart();
     const totalPrice = getTotalPrice();
+
+    const handleOpenShoppingCart = () => {
+        if (getTotalPrice() !== '0.00') {
+            setIsOpenShoppingCart(true);
+        }
+    };
 
     return (
         <Container>
@@ -90,12 +96,12 @@ const Banner = (): JSX.Element => {
                     text="View order"
                     backgroundColor={colors.pink}
                     price={totalPrice}
-                    onClick={() => setIsShowOrder(true)}
+                    onClick={handleOpenShoppingCart}
                 />
             </div>
-            {isShowOrder && (
+            {isOpenShoppingCart && (
                 <ScreenModal>
-                    <ShoppingCart closeModal={() => setIsShowOrder(false)} />
+                    <ShoppingCart closeModal={() => setIsOpenShoppingCart(false)} />
                 </ScreenModal>
             )}
         </Container>
