@@ -1,3 +1,4 @@
+import produce from 'immer';
 import { useState } from 'react';
 import { DropResult } from 'react-beautiful-dnd';
 import { IProduct } from 'types';
@@ -5,10 +6,10 @@ import useShoppingCart from './useShoppingCart';
 import { doneStatus, inProcessStatus, pendingStatus } from '../constants';
 
 interface IUseDNDProductsProps {
-    allList: IProductsStatus;
+    allList: IStatusList;
     onDragEnd: (result: DropResult) => void;
 }
-interface IProductsStatus {
+interface IStatusList {
     [key: string]: Array<IProduct> | [];
 }
 
@@ -18,11 +19,11 @@ type DroppableSource = {
 };
 
 const useDNDProducts = (): IUseDNDProductsProps => {
-    const { shopList } = useShoppingCart();
+    const { shopList, updateStatus } = useShoppingCart();
     const pending = shopList.filter(({ status }) => status === pendingStatus);
     const inProcess = shopList.filter(({ status }) => status === inProcessStatus);
     const done = shopList.filter(({ status }) => status === doneStatus);
-    const [allList, setAllList] = useState<IProductsStatus>({ pending, inProcess, done });
+    const [allList, setAllList] = useState<IStatusList>({ pending, inProcess, done });
 
     const reorder = (list: Array<IProduct>, startIndex: number, endIndex: number) => {
         const result = [...list];
@@ -37,6 +38,7 @@ const useDNDProducts = (): IUseDNDProductsProps => {
         const destClone = [...destination];
         const [removed] = sourceClone.splice(droppableSource.index, 1);
         const removedUpdated = { ...removed, status: droppableDestination.droppableId };
+        const { productOrderId, status } = removedUpdated;
 
         destClone.splice(droppableDestination.index, 0, removedUpdated);
 
@@ -44,6 +46,8 @@ const useDNDProducts = (): IUseDNDProductsProps => {
             [droppableSource.droppableId]: sourceClone,
             [droppableDestination.droppableId]: destClone,
         };
+
+        updateStatus({ productOrderId, status });
 
         return result;
     };
@@ -57,20 +61,19 @@ const useDNDProducts = (): IUseDNDProductsProps => {
 
         const sInd = source.droppableId;
         const dInd = destination.droppableId;
-        const dropOnTheSameColumn = sInd === dInd;
+        const droppedOnTheSameColumn = sInd === dInd;
 
-        if (dropOnTheSameColumn) {
-            const itemsSorted = reorder(allList[sInd], source.index, destination.index);
-            const newState = { ...allList };
-            newState[sInd] = itemsSorted;
+        if (droppedOnTheSameColumn) {
+            const listSorted = reorder(allList[sInd], source.index, destination.index);
+            const newState = produce(allList, (draft) => { draft[sInd] = listSorted; });
             setAllList(newState);
         } else {
-            const itemsSorted = move(allList[sInd], allList[dInd], source, destination);
-            const newState = { ...allList };
-            newState[sInd] = itemsSorted[sInd];
-            newState[dInd] = itemsSorted[dInd];
-
-            setAllList({ ...newState });
+            const listSorted = move(allList[sInd], allList[dInd], source, destination);
+            const newState = produce(allList, (draft) => {
+                draft[sInd] = listSorted[sInd];
+                draft[dInd] = listSorted[dInd];
+            });
+            setAllList(newState);
         }
     };
 
