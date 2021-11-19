@@ -36,7 +36,7 @@ const StyledButton = styled(Button) <{ onClick?: (topping: string) => void }>`
 `;
 
 interface IProps {
-    sodaFlavour: string| undefined;
+    sodaFlavour: string | undefined;
     setSodaFlavour: (newFlavour: string) => void;
 }
 
