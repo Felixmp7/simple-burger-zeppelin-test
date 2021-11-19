@@ -40,13 +40,13 @@ const ContainerContent = styled.div`
     }
 `;
 
-type Props = {
+interface IProps {
     products: Array<IProduct>;
     descriptionTitle: string;
     productTitle: string;
 }
 
-const Products = ({ products, descriptionTitle, productTitle }: Props): JSX.Element => (
+const Products = ({ products, descriptionTitle, productTitle }: IProps): JSX.Element => (
     <ContainerContent>
         <Title descriptionTitle={descriptionTitle} productTitle={productTitle} />
         <div className="products-container">
