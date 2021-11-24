@@ -39,35 +39,27 @@ interface IShoppingCartHookProps {
 const useShoppingCart = (): IShoppingCartHookProps => {
     const [shopList, setShopList] = useRecoilState(shopListAtom);
 
-    const handleAddOrRemove = (product: IProduct): void => {
-        const shopListUpdated = produce(shopList, (draft) => {
+    const handleAddOrRemove: IShoppingCartHookProps['handleAddOrRemove'] = (product) => {
+        setShopList(produce((draft) => {
             const indexOfOrder = draft.findIndex(({ productOrderId }) => productOrderId === product.productOrderId);
             if (indexOfOrder === -1) {
                 draft.push(product);
             } else {
                 draft.splice(indexOfOrder, 1);
             }
-        });
-        setShopList(shopListUpdated);
+        }));
     };
 
-    const addNewProduct = ({
-        callback,
-        price,
-        toppingsAdded,
-        sizeSelected,
-        sodaFlavourSelected,
-        ...rest
-    }: IProps) => {
+    const addNewProduct = ({ callback, price, ...rest }: IProps) => {
         const newProduct = {
             ...rest,
             price,
             productOrderId: Math.random().toString(36).slice(2),
             status: 'pending',
             additionals: {
-                toppings: toppingsAdded,
-                size: sizeSelected,
-                sodaFlavour: sodaFlavourSelected,
+                toppings: rest.toppingsAdded,
+                size: rest.sizeSelected,
+                sodaFlavour: rest.sodaFlavourSelected,
             },
         };
         handleAddOrRemove(newProduct);

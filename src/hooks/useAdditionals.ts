@@ -24,7 +24,7 @@ const useAdditionals = ({
     const [sodaFlavourSelected, setSodaFlavourSelected] = useState(sodaFlavour);
 
     const handleTopping = (topping: string): void => {
-        let newToppingsList = [];
+        let newToppingsList;
         const alreadySelected = toppingsAdded.some((item) => item === topping);
 
         if (alreadySelected) {
@@ -32,7 +32,7 @@ const useAdditionals = ({
         } else {
             newToppingsList = [...toppingsAdded, topping];
         }
-        setToppingsAdded([...newToppingsList]);
+        setToppingsAdded(newToppingsList);
     };
 
     const handleExtraCost = (newSize: SizeProps) => {
